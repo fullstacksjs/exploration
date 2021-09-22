@@ -1,0 +1,19 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/package.json"
+  ],
+  "dictionaryDefinitions": [
+    {
+      "name": "keywords",
+      "description": "Project keywords",
+      "path": "./config/dictionaries/keywords.txt"
+    }
+  ],
+  "dictionaries": [
+    "node",
+    "keywords"
+  ]
+}
