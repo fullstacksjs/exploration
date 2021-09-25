@@ -19,6 +19,7 @@ const theme: Theme = {
   space: range(21).map((i) => i * 4),
   fontSizes: [12, '0.875rem', '1.25rem', '2.625rem', 56],
   fonts: {
+    heading: 'inherit',
     monospace: 'Menlo, monospace',
   },
   fontWeights: {
