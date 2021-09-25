@@ -2,6 +2,7 @@
   "url": "https://explore.fullstacks.ir/",
   "title": "FullstacksJS - Exploration",
   "shortName": "Exploration",
+  "description": "Fullstacks Exploration",
   "backgroundColor": "#383E4D",
   "themeColor": "#4CEB9C"
 }
