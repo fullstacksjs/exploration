@@ -1,13 +1,14 @@
 import { useRive, useStateMachineInput } from 'rive-react';
 import { Box, Flex, Heading } from 'theme-ui';
 
+import Seo from '../components/Seo';
+
 const STATE_MACHINE_NAME = 'machine';
 const ON_HOVER_INPUT_NAME = 'Hover';
 
 const HomagePage = () => {
   const { RiveComponent, rive } = useRive({
     autoplay: true,
-    // animations: ['moons', 'planet', 'stars'],
     stateMachines: STATE_MACHINE_NAME,
     src: '/solar.riv',
   });
@@ -19,34 +20,37 @@ const HomagePage = () => {
   );
 
   return (
-    <Flex
-      as="main"
-      sx={{
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        bg: 'background.1',
-        minHeight: '100vh',
-        gap: 20,
-      }}
-    >
-      <Box sx={{ textAlign: 'center' }}>
-        <Heading variant="h1">
-          FullstacksJS <Box sx={{ color: 'primary' }}>Exploration</Box>
-        </Heading>
-      </Box>
-      <Box
-        as={RiveComponent}
-        onMouseEnter={() => (onHoverInput.value = true)}
-        onMouseLeave={() => (onHoverInput.value = false)}
+    <>
+      <Seo title="Welcome" />
+      <Flex
+        as="main"
         sx={{
-          width: '90vw',
-          maxWidth: '500px',
-          height: '90vh',
-          maxHeight: '500px',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          bg: 'background.1',
+          minHeight: '100vh',
+          gap: 20,
         }}
-      />
-    </Flex>
+      >
+        <Box sx={{ textAlign: 'center' }}>
+          <Heading variant="h1">
+            FullstacksJS <Box sx={{ color: 'primary' }}>Exploration</Box>
+          </Heading>
+        </Box>
+        <Box
+          as={RiveComponent}
+          onMouseEnter={() => (onHoverInput.value = true)}
+          onMouseLeave={() => (onHoverInput.value = false)}
+          sx={{
+            width: '90vw',
+            maxWidth: '500px',
+            height: '90vh',
+            maxHeight: '500px',
+          }}
+        />
+      </Flex>
+    </>
   );
 };
 
