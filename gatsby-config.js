@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 const site = require('./config/site.json');
+const themeUiSvgrTemplate = require('./config/themeUiSvgrTemplate');
 
 /** @type import('gatsby').GatsbyConfig */
 module.exports = {
@@ -20,6 +21,14 @@ module.exports = {
         background_color: site.backgroundColor,
         theme_color: site.themeColor,
         display: `standalone`,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-svgr',
+      options: {
+        prettier: true,
+        svgo: true,
+        template: themeUiSvgrTemplate,
       },
     },
   ],

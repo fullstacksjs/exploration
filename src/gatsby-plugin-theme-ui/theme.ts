@@ -8,6 +8,7 @@ const theme: Theme = {
     },
     text: {
       __default: '#FFFFFF',
+      1: '#A6AFBF',
     },
     background: {
       0: '#242932',
@@ -22,6 +23,13 @@ const theme: Theme = {
     heading: 'inherit',
     monospace: 'Menlo, monospace',
   },
+  cards: {
+    primary: {
+      padding: 2,
+      borderRadius: 4,
+      border: '1px dashed ',
+    },
+  },
   fontWeights: {
     normal: 500,
     bold: 600,
@@ -29,6 +37,13 @@ const theme: Theme = {
   },
   lineHeights: {
     heading: '1.3',
+  },
+  buttons: {
+    text: {
+      color: 'primary',
+      bg: 'transparent',
+      textTransform: 'uppercase',
+    },
   },
   text: {
     default: {
