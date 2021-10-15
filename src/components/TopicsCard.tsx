@@ -19,7 +19,7 @@ const TopicsCart = ({ title, desc, link, cardImgUrl, avatarUrl, userName }) => {
       />
 
       <Box sx={{ maxWidth: 609 }}>
-        <Heading as="h2" variant="text.heading" sx={{ fontSize: 24 }}>
+        <Heading as="h3" variant="text.heading">
           {title}
         </Heading>
         <Text as="p" variant="text.body">
@@ -37,7 +37,6 @@ const TopicsCart = ({ title, desc, link, cardImgUrl, avatarUrl, userName }) => {
         href="#"
         variant="text.lead"
         sx={{
-          fontSize: 16,
           color: '#F39F47',
           display: 'flex',
           flexDirection: 'column',
