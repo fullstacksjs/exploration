@@ -1,30 +1,11 @@
-import { useState } from 'react';
-import { useRive, useStateMachineInput } from 'rive-react';
-import { Box, Divider, Heading } from 'theme-ui';
-
+import { Box, Divider, Heading, Container } from 'theme-ui';
+import { isNullOrEmpty } from '@fullstacksjs/toolbox';
 import Seo from '../components/Seo';
 import TopicsCart from '../components/TopicsCard';
-import { isEmpty } from '../utils/isEmpty';
-import { cards } from './../data/cardData';
+import { cardsData } from './../data/cardData';
+import Planet from './../components/Planet';
 
-const STATE_MACHINE_NAME = 'machine';
-const ON_HOVER_INPUT_NAME = 'Hover';
-
-const HomagePage = () => {
-  const { RiveComponent, rive } = useRive({
-    autoplay: true,
-    stateMachines: STATE_MACHINE_NAME,
-    src: '/solar.riv',
-  });
-
-  const onHoverInput = useStateMachineInput(
-    rive,
-    STATE_MACHINE_NAME,
-    ON_HOVER_INPUT_NAME,
-  );
-
-  const [cardsData, setCardsData] = useState(cards);
-
+const Topics = () => {
   return (
     <>
       <Seo title="This Week" />
@@ -35,37 +16,24 @@ const HomagePage = () => {
           bg: 'background.1',
         }}
       >
-        <Heading variant="h1" sx={{ textAlign: 'center' }}>
+        <Heading variant="h2" sx={{ textAlign: 'center' }}>
           THIS WEEK
         </Heading>
 
-        <Box
-          as={RiveComponent}
-          onMouseEnter={() => (onHoverInput.value = true)}
-          onMouseLeave={() => (onHoverInput.value = false)}
-          sx={{
-            width: '90vw',
-            maxWidth: '500px',
-            height: '90vh',
-            maxHeight: '500px',
-            position: 'fixed',
-            right: -214,
-            top: -220,
-          }}
-        />
+        <Planet sx={{ position: 'fixed', right: -214, top: -220 }} />
 
-        {!isEmpty(cardsData) ? (
-          <Box sx={{ marginX: 'auto', maxWidth: 884 }}>
+        {!isNullOrEmpty(cardsData) ? (
+          <Container variant="layout.container">
             <TopicsCart {...cardsData[0]} />
-          </Box>
+          </Container>
         ) : (
-          <Heading as="h1">There are no users to display</Heading>
+          <Heading as="h2">There are no user to display</Heading>
         )}
 
         <Box sx={{ position: 'relative' }}>
           <Box sx={{ textAlign: 'center' }}>
             <Heading
-              variant="h1"
+              variant="h2"
               sx={{
                 textAlign: 'center',
                 display: 'inline',
@@ -81,18 +49,18 @@ const HomagePage = () => {
           <Divider sx={{ variant: 'lines.line' }} />
         </Box>
 
-        {!isEmpty(cardsData) ? (
-          cardsData.slice(1, cardsData.length).map((cardData) => (
-            <Box key={cardData.id} sx={{ marginX: 'auto', maxWidth: 884 }}>
+        {!isNullOrEmpty(cardsData) ? (
+          cardsData.slice(1).map((cardData) => (
+            <Container key={cardData.id} variant="layout.container">
               <TopicsCart {...cardData} />
-            </Box>
+            </Container>
           ))
         ) : (
-          <Heading as="h1">There are no users to display</Heading>
+          <Heading as="h2">There are no user to display</Heading>
         )}
       </Box>
     </>
   );
 };
 
-export default HomagePage;
+export default Topics;

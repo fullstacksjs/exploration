@@ -3,7 +3,7 @@ import CardAvatar from '../images/cardAvatar.png';
 import EslintImg from '../images/eslint.png';
 import GitImg from '../images/git.png';
 
-export const cards = [
+export const cardsData = [
   {
     id: 1,
     title: 'Babel',

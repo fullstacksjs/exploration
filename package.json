@@ -17,7 +17,6 @@
   "dependencies": {
     "@emotion/react": "11.4.1",
     "@fontsource/rajdhani": "4.5.0",
-    "@fullstacksjs/toolbox": "1.4.0",
     "gatsby": "3.13.1",
     "gatsby-plugin-gatsby-cloud": "3.2.0",
     "gatsby-plugin-google-analytics": "3.14.0",
@@ -37,6 +36,7 @@
   },
   "devDependencies": {
     "@fullstacksjs/eslint-config": "6.5.2",
+    "@fullstacksjs/toolbox": "1.4.0",
     "@types/react-helmet": "6.1.2",
     "eslint": "7.32.0",
     "prettier": "2.4.1",

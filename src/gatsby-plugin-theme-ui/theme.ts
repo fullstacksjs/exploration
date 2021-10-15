@@ -17,9 +17,11 @@ const theme: Theme = {
       3: '#404859',
     },
   },
-  space: range(21).map((i) => i * 5),
-  fontSizes: [12, '0.875rem', '1.25rem', '2.625rem', 56, '1rem'],
+
+  space: range(21).map((i) => i * 4),
+  fontSizes: [12, 16, 24, '2rem', '3rem'],
   borderRadiuses: [4, '50%'],
+
   fonts: {
     heading: 'inherit',
     monospace: 'Menlo, monospace',
@@ -34,7 +36,6 @@ const theme: Theme = {
   fontWeights: {
     normal: 500,
     bold: 600,
-    heading: 600,
   },
   lineHeights: {
     heading: '1.3',
@@ -55,13 +56,19 @@ const theme: Theme = {
     },
     h1: {
       fontSize: 3,
+      fontWeight: 'bold',
+    },
+    h2: {
+      fontSize: 4,
+      fontWeight: 'bold',
     },
     heading: {
       fontWeight: 'bold',
+      fontSize: 2,
     },
     body: {
       fontWeight: 'normal',
-      fontSize: 5,
+      fontSize: 1,
       marginTop: 2,
       marginBottom: 2,
       color: 'text.primary',
@@ -75,8 +82,10 @@ const theme: Theme = {
     lead: {
       fontWeight: 'normal',
       lineHeight: 'lead',
+      fontSize: 1,
     },
   },
+
   images: {
     cardAvatar: {
       width: 33,
@@ -98,7 +107,7 @@ const theme: Theme = {
   breakpoints: ['576px', '768px', '992px', '1200px', '1440px'],
   layout: {
     container: {
-      maxWidth: ['100%', '540px', '720px', '960px', '1170px', '1440px'],
+      maxWidth: ['100%', '540px', '720px', '960px', '884px'],
     },
   },
 };
