@@ -5,6 +5,7 @@ Docgen
 Estateguru
 fnames
 fullstacksjs
+fullstacks
 hookform
 iban
 incontext
@@ -27,3 +28,6 @@ svgr
 Chainable
 MAILOSAUR
 localstorage
+Menlo
+monospace
+fontsource
