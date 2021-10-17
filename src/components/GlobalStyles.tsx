@@ -1,5 +1,6 @@
 import '@fontsource/rajdhani/500.css';
 import '@fontsource/rajdhani/600.css';
+import '@fontsource/rajdhani/700.css';
 
 import { Global } from '@emotion/react';
 
@@ -16,7 +17,7 @@ const GlobalStyles = () => (
         margin: 0,
       },
       body: {
-        fontSize: '14px',
+        fontSize: '16px',
         fontFamily: 'Rajdhani, sans-serif',
         fontWeight: 500,
         margin: 0,
