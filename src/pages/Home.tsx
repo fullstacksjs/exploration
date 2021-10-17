@@ -1,7 +1,7 @@
 import { Box, Flex, Heading } from 'theme-ui';
 
+import Planet from '../components/Planet';
 import Seo from '../components/Seo';
-import Planet from './../components/Planet';
 
 const HomagePage = () => {
   return (
@@ -15,15 +15,19 @@ const HomagePage = () => {
           justifyContent: 'center',
           bg: 'background.1',
           minHeight: '100vh',
-          gap: 20,
+          gap: 14,
         }}
       >
-        <Box sx={{ textAlign: 'center' }}>
-          <Heading variant="h1">
-            FullstacksJS <Box sx={{ color: 'primary' }}>Exploration</Box>
-          </Heading>
-        </Box>
-        <Planet />
+        <Planet sx={{ width: '320px', height: '320px' }} />
+        <Heading
+          variant="hero"
+          sx={{ textAlign: 'center', display: 'flex', flexDirection: 'column' }}
+        >
+          Fullstacks{' '}
+          <Box as="span" sx={{ color: 'primary' }}>
+            Exploration
+          </Box>
+        </Heading>
       </Flex>
     </>
   );
