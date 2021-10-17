@@ -1,21 +1,17 @@
 import { useRive, useStateMachineInput } from 'rive-react';
-import { Box } from 'theme-ui';
+import { RiveProps } from 'rive-react/dist/types/components/Rive';
+import { Box, BoxProps } from 'theme-ui';
 
-const STATE_MACHINE_NAME = 'machine';
-const ON_HOVER_INPUT_NAME = 'Hover';
+interface Planet extends BoxProps, RiveProps {}
 
-const Planet = ({ sx }) => {
+const Planet: React.FC<SxComponent> = (props) => {
   const { RiveComponent, rive } = useRive({
     autoplay: true,
-    stateMachines: STATE_MACHINE_NAME,
+    stateMachines: 'machine',
     src: '/solar.riv',
   });
 
-  const onHoverInput = useStateMachineInput(
-    rive,
-    STATE_MACHINE_NAME,
-    ON_HOVER_INPUT_NAME,
-  );
+  const onHoverInput = useStateMachineInput(rive, 'machine', 'Hover');
 
   return (
     <Box
@@ -26,13 +22,7 @@ const Planet = ({ sx }) => {
       onMouseLeave={() => {
         onHoverInput.value = false;
       }}
-      sx={{
-        width: '90vw',
-        maxWidth: '500px',
-        height: '90vh',
-        maxHeight: '500px',
-        ...sx,
-      }}
+      {...props}
     />
   );
 };
