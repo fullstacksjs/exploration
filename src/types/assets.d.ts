@@ -10,3 +10,8 @@ declare module '*.svg' {
   export const ReactComponent: SVGComponent;
   export default content;
 }
+
+declare module '*.png' {
+  const url: string;
+  export default url;
+}

@@ -1,68 +1,95 @@
-/** @jsxImportSource theme-ui */
-import { Box, Card, Flex, Heading, Image, NavLink, Text } from 'theme-ui';
+import { Composition } from '@atomic-layout/emotion';
+import { Button, Card, Heading, Image, Text, useThemeUI } from 'theme-ui';
 
+import { ReactComponent as ChevronDownIcon } from '../assets/ChevronDownIcon.svg';
+import { ReactComponent as ChevronUpIcon } from '../assets/ChevronUpIcon.svg';
+import { Topic } from '../mocks/topics';
 
-const TopicsCart = ({ title, desc, link, cardImgUrl, avatarUrl, userName }) => {
+const areas = `
+  icon title button
+  icon desc button
+  icon author button
+`;
+
+const TopicsCart: React.FC<Topic> = ({
+  title,
+  desc,
+  icon: Icon,
+  username,
+  authorAvatar,
+  votes,
+  isVoted,
+}) => {
+  const { theme } = useThemeUI();
   return (
-    <Flex
-      sx={{
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        marginY: 8,
-      }}
-      variant="cards.primary"
-    >
-      <Image
-        src={cardImgUrl}
-        alt="Babel"
-        sx={{ width: 73, minWidth: 'auto !important' }}
-      />
-
-      <Box sx={{ maxWidth: 609 }}>
-        <Heading as="h3" variant="text.heading">
-          {title}
-        </Heading>
-        <Text as="p" variant="text.body">
-          {desc}
-        </Text>
-        <Flex sx={{ alignItems: 'center' }}>
-          <Image src={avatarUrl} variant="images.cardAvatar" alt="Avatar" />
-          <Text as="span" sx={{ marginLeft: 2 }}>
-            {userName}
-          </Text>
-        </Flex>
-      </Box>
-
-      <NavLink
-        href="#"
-        variant="text.lead"
-        sx={{
-          color: '#F39F47',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
+    <Card variant="cards.primary" sx={{ width: '884px' }}>
+      <Composition
+        areas={areas}
+        templateCols="95px 1fr 70px"
+        gapRow={theme.space[2]}
+        gapCol={theme.space[6]}
       >
-        <Text as="span" sx={{ display: 'block' }}>
-          {link}
-        </Text>
-        <svg
-          width="10"
-          height="7"
-          viewBox="0 0 10 7"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M9 1.5L5 5.5L1 1.5"
-            stroke="#F39F47"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </NavLink>
-    </Flex>
+        {(Areas) => (
+          <>
+            <Areas.Icon flex alignItems="center">
+              <Icon sx={{ width: 95 }} />
+            </Areas.Icon>
+            <Areas.Title>
+              <Heading as="h3" variant="heading4">
+                {title}
+              </Heading>
+            </Areas.Title>
+            <Areas.Desc>
+              <Text as="p" color="text.1" variant="text.body">
+                {desc}
+              </Text>
+            </Areas.Desc>
+            <Areas.Author flex alignItems="center">
+              <Image
+                sx={{ width: '33px' }}
+                src={authorAvatar}
+                variant="images.avatar"
+                alt="Avatar"
+              />
+              <Text
+                as="span"
+                color="text.0"
+                variant="small"
+                sx={{ marginLeft: 2 }}
+              >
+                {username}
+              </Text>
+            </Areas.Author>
+
+            <Areas.Button flex alignItems="center">
+              <Button
+                variant="text"
+                sx={{
+                  p: 0,
+                  display: 'flex',
+                  color: isVoted ? 'accent' : 'text',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  textTransform: 'unset',
+                  cursor: 'pointer',
+                  gap: 1,
+                }}
+              >
+                {!isVoted ? <ChevronUpIcon width="16px" /> : null}
+                <Text
+                  variant="lead"
+                  as="span"
+                  sx={{ display: 'block', lineHeight: '20px' }}
+                >
+                  {votes}&nbsp;Votes
+                </Text>
+                {isVoted ? <ChevronDownIcon width="16px" /> : null}
+              </Button>
+            </Areas.Button>
+          </>
+        )}
+      </Composition>
+    </Card>
   );
 };
 
