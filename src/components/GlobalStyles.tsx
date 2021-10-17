@@ -20,6 +20,7 @@ const GlobalStyles = () => (
         fontSize: '16px',
         fontFamily: 'Rajdhani, sans-serif',
         fontWeight: 500,
+        backgroundColor: 'background.3',
         margin: 0,
       },
     })}

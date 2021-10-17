@@ -11,6 +11,7 @@ const theme: Theme = {
       1: '#A6AFBF',
     },
     background: {
+      __default: '#383E4D',
       0: '#242932',
       1: '#313744',
       2: '#383E4D',
@@ -42,23 +43,36 @@ const theme: Theme = {
     primary: {
       padding: 6,
       borderRadius: 0,
-      border: '1px dashed #d4dded41',
+      background: `
+        linear-gradient(to right, transparent 70%, hsla(219, 40%, 88%, 0.2) 0%) top/13px 1px repeat-x,
+        linear-gradient(transparent 70%, hsla(219, 40%, 88%, 0.2) 0%) right/1px 13px repeat-y,
+        linear-gradient(to right, transparent 70%, hsla(219, 40%, 88%, 0.2) 0%) bottom/13px 1px repeat-x,
+        linear-gradient(transparent 70%, hsla(219, 40%, 88%, 0.2) 0%) left/1px 13px repeat-y
+      `,
     },
   },
 
   fontWeights: {
     normal: 500,
     heading: 600,
+    semibold: 600,
     bold: 700,
   },
 
   lineHeights: {
     heading: '1.3',
-    lead: '20.42px',
-    body: '24px',
+    lead: '1.25',
+    body: '1.5',
   },
 
   buttons: {
+    primary: {
+      fontSize: 1,
+      fontFamily: 'inherit',
+      fontWeight: 'semibold',
+      lineHeight: 'lead',
+    },
+
     text: {
       color: 'primary',
       bg: 'transparent',
@@ -70,6 +84,11 @@ const theme: Theme = {
     default: {
       fontSize: 1,
       fontWeight: 'normal',
+      lineHeight: 'body',
+    },
+
+    heading: {
+      textTransform: 'uppercase',
     },
 
     hero: {
@@ -92,8 +111,6 @@ const theme: Theme = {
     body: {
       fontWeight: 'normal',
       fontSize: 1,
-      marginTop: 2,
-      marginBottom: 2,
       color: 'text.primary',
       lineHeight: 'body',
     },
