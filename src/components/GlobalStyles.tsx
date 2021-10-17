@@ -16,6 +16,9 @@ const GlobalStyles = () => (
       'h1, h2, h3, h4, h5, h6': {
         margin: 0,
       },
+      button: {
+        fontFamily: 'inherit',
+      },
       body: {
         fontSize: '16px',
         fontFamily: 'Rajdhani, sans-serif',

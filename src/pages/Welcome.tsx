@@ -1,30 +1,24 @@
-import { useState } from 'react';
-import { Box, Button, Card, Flex, Heading, Text } from 'theme-ui';
+import { Button, Card, Flex, Heading, Text } from 'theme-ui';
 
 import { ReactComponent } from '../assets/Planet.svg';
+import Hero from '../components/Hero';
 import Seo from '../components/Seo';
 
 const WelcomePage = () => {
-  const [isHover, setIsHover] = useState(false);
   return (
     <>
       <Seo title="Welcome" />
       <Flex
         as="main"
         sx={{
+          pt: 26,
           flexDirection: 'column',
-          alignItems: 'center',
           justifyContent: 'center',
-          bg: 'background.1',
           minHeight: '100vh',
           gap: 20,
         }}
       >
-        <Box sx={{ textAlign: 'center' }}>
-          <Heading variant="h1">
-            FullstacksJS <Box sx={{ color: 'primary' }}>Exploration</Box>
-          </Heading>
-        </Box>
+        <Hero />
         <Card>
           <Flex sx={{ flexDirection: 'column', gap: 10, alignItems: 'center' }}>
             <ReactComponent width="128px" />

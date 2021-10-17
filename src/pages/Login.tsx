@@ -1,3 +1,4 @@
+import { navigate } from 'gatsby';
 import { Card, Flex, Heading, Text } from 'theme-ui';
 
 import { ReactComponent as PlanetSvg } from '../assets/Planet.svg';
@@ -41,7 +42,13 @@ const Login = () => {
                 </Text>
               </Flex>
             </Flex>
-            <GithubButton>Login with Github</GithubButton>
+            <GithubButton
+              onClick={() => {
+                navigate('/Topics');
+              }}
+            >
+              Login with Github
+            </GithubButton>
           </Flex>
         </Card>
       </Flex>

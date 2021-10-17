@@ -31,3 +31,4 @@ localstorage
 Menlo
 monospace
 fontsource
+semibold

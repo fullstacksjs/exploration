@@ -10,6 +10,9 @@ const theme: Theme = {
       __default: '#FFFFFF',
       1: '#A6AFBF',
     },
+    accent: {
+      __default: '#F39F47',
+    },
     background: {
       __default: '#383E4D',
       0: '#242932',
@@ -89,6 +92,7 @@ const theme: Theme = {
 
     heading: {
       textTransform: 'uppercase',
+      fontWeight: 'heading',
     },
 
     hero: {
@@ -103,9 +107,13 @@ const theme: Theme = {
       fontWeight: 'semibold',
     },
 
-    h2: {
+    heading2: {
       fontSize: 4,
-      fontWeight: 'bold',
+    },
+
+    heading4: {
+      fontWeight: 'heading',
+      fontSize: 2,
     },
 
     body: {
@@ -122,29 +130,16 @@ const theme: Theme = {
     },
 
     lead: {
-      fontWeight: 'normal',
+      fontWeight: 'semibold',
       lineHeight: 'lead',
       fontSize: 1,
     },
   },
 
   images: {
-    cardAvatar: {
-      width: 33,
+    avatar: {
       borderRadius: '50%',
       border: '2px solid #fff',
-    },
-  },
-
-  lines: {
-    line: {
-      color: 'transparent',
-      borderBottom: '1px dashed #d4dded41',
-      position: 'absolute',
-      width: '100%',
-      top: '50%',
-      transform: 'translateY(-50%)',
-      margin: 0,
     },
   },
 
