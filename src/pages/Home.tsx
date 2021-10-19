@@ -16,6 +16,9 @@ const HomagePage = () => {
           justifyContent: 'center',
           minHeight: '100vh',
           gap: 14,
+          '@media screen and (max-width: 450px)': {
+            flexDirection: 'column-reverse',
+          },
         }}
       >
         <Planet sx={{ width: '320px', height: '320px' }} />
