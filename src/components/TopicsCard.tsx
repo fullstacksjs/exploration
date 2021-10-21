@@ -34,10 +34,10 @@ const TopicsCart: React.FC<Topic> = ({
 
   const [showDetails, setShowDetails] = useState(false);
 
-  const hasDescOverflow = desc.length > 220;
+  const hasDescOverflow = desc.length > 120;
 
   return (
-    <Card variant="cards.primary" sx={{ width: '884px' }}>
+    <Card>
       <Composition
         areas={areasMobile}
         areasSm={areasTablet}
@@ -56,21 +56,21 @@ const TopicsCart: React.FC<Topic> = ({
               alignItems="center"
               justifyContent="center"
             >
-              <Icon sx={{ width: [60, 95] }} />
+              <Icon sx={{ width: [70, 95] }} />
             </Areas.Icon>
             <Areas.Title>
               <Heading
                 as="h3"
+                variant="heading4"
                 sx={{
                   textAlign: ['center', 'left'],
                   marginBottom: -2,
                 }}
-                variant="heading4"
               >
                 {title}
               </Heading>
             </Areas.Title>
-            <Areas.Desc>
+            <Areas.Desc flex flexDirection="column">
               <Box
                 sx={{
                   position: 'relative',
@@ -101,8 +101,6 @@ const TopicsCart: React.FC<Topic> = ({
                       position: 'absolute',
                       bottom: 0,
                       left: 0,
-                      m: 0,
-                      p: 2,
                       height: '55px',
                       width: '100%',
                       backgroundImage: `linear-gradient(to bottom, transparent, #383E4D)`,
@@ -110,34 +108,29 @@ const TopicsCart: React.FC<Topic> = ({
                   />
                 )}
               </Box>
-              {hasDescOverflow && (
-                <Button
-                  variant="text"
+              {hasDescOverflow ? (
+                <Text
+                  variant="small"
                   onClick={() => setShowDetails(!showDetails)}
+                  as="span"
+                  role="link"
                   sx={{
-                    display: ['block', 'none'],
+                    alignSelf: 'center',
+                    py: 1,
+                    px: 2,
                     textAlign: 'center',
                     cursor: 'pointer',
-                    m: 0,
-                    p: 0,
-                    gap: 1,
-                    width: '100%',
-                    color: 'text',
+                    display: 'inline',
+                    marginTop: '10px',
+                    '&:focus': {
+                      outline: '1px solid',
+                      outlineColor: 'accent',
+                    },
                   }}
                 >
-                  <Text
-                    variant="small"
-                    as="span"
-                    sx={{
-                      display: 'block',
-                      lineHeight: '25px',
-                      marginTop: '10px',
-                    }}
-                  >
-                    {showDetails ? 'Hide Detail' : 'Show Detail'}
-                  </Text>
-                </Button>
-              )}
+                  {showDetails ? 'Hide Detail' : 'Show Detail'}
+                </Text>
+              ) : null}
             </Areas.Desc>
             <Areas.Author
               flex
@@ -153,11 +146,10 @@ const TopicsCart: React.FC<Topic> = ({
               />
               <Text
                 as="span"
-                color="text.0"
                 variant="small"
                 sx={{
-                  marginLeft: [0, 2, null],
-                  marginTop: ['5px', null],
+                  marginLeft: [0, 2],
+                  marginTop: ['5px', 0],
                   textAlign: ['center', 'left'],
                 }}
               >

@@ -109,7 +109,7 @@ const theme: Theme = {
     },
 
     heading2: {
-      fontSize: [3, 4, null, null, null],
+      fontSize: [3, 4],
     },
 
     heading4: {
@@ -142,6 +142,10 @@ const theme: Theme = {
       borderRadius: '50%',
       border: '2px solid #fff',
     },
+  },
+
+  sizes: {
+    container: '100%',
   },
 
   breakpoints: ['576px', '768px', '992px', '1200px', '1440px'],
