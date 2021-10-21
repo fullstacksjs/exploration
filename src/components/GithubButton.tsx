@@ -36,7 +36,7 @@ const GithubButton: React.FC<ButtonProps> = (props) => (
           height: '12px',
           width: '1px',
           display: 'inline-flex',
-          borderLeft: '2px solid white',
+          borderLeft: '1px solid white',
           pr: 2,
         },
       }}
