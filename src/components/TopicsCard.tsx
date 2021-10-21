@@ -1,11 +1,21 @@
+/* eslint-disable max-lines-per-function */
 import { Composition } from '@atomic-layout/emotion';
-import { Button, Card, Heading, Image, Text, useThemeUI } from 'theme-ui';
+import { useState } from 'react';
+import { Box, Button, Card, Heading, Image, Text, useThemeUI } from 'theme-ui';
 
 import { ReactComponent as ChevronDownIcon } from '../assets/ChevronDownIcon.svg';
 import { ReactComponent as ChevronUpIcon } from '../assets/ChevronUpIcon.svg';
 import { Topic } from '../mocks/topics';
 
-const areas = `
+const areasMobile = `
+  icon
+  title
+  author
+  desc
+  button
+`;
+
+const areasTablet = `
   icon title button
   icon desc button
   icon author button
@@ -21,30 +31,123 @@ const TopicsCart: React.FC<Topic> = ({
   isVoted,
 }) => {
   const { theme } = useThemeUI();
+
+  const [showDetails, setShowDetails] = useState(false);
+
+  const hasDescOverflow = desc.length > 220;
+
   return (
     <Card variant="cards.primary" sx={{ width: '884px' }}>
       <Composition
-        areas={areas}
-        templateCols="95px 1fr 70px"
-        gapRow={theme.space[2]}
-        gapCol={theme.space[6]}
+        areas={areasMobile}
+        areasSm={areasTablet}
+        templateCols="auto"
+        templateColsSm="85px 1fr 40px"
+        templateColsMd="95px 1fr 70px"
+        gapRow={theme.space[4]}
+        gapRowSm={theme.space[2]}
+        gapColSm={theme.space[6]}
       >
         {(Areas) => (
           <>
-            <Areas.Icon flex alignItems="center">
-              <Icon sx={{ width: 95 }} />
+            <Areas.Icon
+              flex
+              width="100%"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Icon sx={{ width: [60, 95, null, null, null] }} />
             </Areas.Icon>
             <Areas.Title>
-              <Heading as="h3" variant="heading4">
+              <Heading
+                as="h3"
+                sx={{
+                  textAlign: ['center', 'left', null, null, null],
+                  marginBottom: -2,
+                }}
+                variant="heading4"
+              >
                 {title}
               </Heading>
             </Areas.Title>
             <Areas.Desc>
-              <Text as="p" color="text.1" variant="text.body">
-                {desc}
-              </Text>
+              <Box
+                sx={{
+                  position: 'relative',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  maxHeight: [
+                    showDetails ? 'max-content' : '95px',
+                    'max-content',
+                    null,
+                    null,
+                    null,
+                  ],
+                  overflow: 'hidden',
+                }}
+              >
+                <Text
+                  as="p"
+                  color="text.1"
+                  variant="text.body"
+                  sx={{
+                    textAlign: ['center', 'left', null, null, null],
+                  }}
+                >
+                  {desc}
+                </Text>
+                {!showDetails && hasDescOverflow && (
+                  <Box
+                    sx={{
+                      display: ['block', 'none', null, null, null],
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      m: 0,
+                      p: 2,
+                      height: '55px',
+                      width: '100%',
+                      backgroundImage: `linear-gradient(to bottom, transparent, #383E4D)`,
+                    }}
+                  />
+                )}
+              </Box>
+              {hasDescOverflow && (
+                <Button
+                  variant="text"
+                  onClick={() => setShowDetails(!showDetails)}
+                  sx={{
+                    display: ['block', 'none', null, null, null],
+                    textAlign: 'center',
+                    cursor: 'pointer',
+                    m: 0,
+                    p: 0,
+                    gap: 1,
+                    width: '100%',
+                    color: 'text',
+                  }}
+                >
+                  <Text
+                    variant="small"
+                    as="span"
+                    sx={{
+                      display: 'block',
+                      lineHeight: '25px',
+                      marginTop: '10px',
+                    }}
+                  >
+                    {showDetails ? 'Hide Detail' : 'Show Detail'}
+                  </Text>
+                </Button>
+              )}
             </Areas.Desc>
-            <Areas.Author flex alignItems="center">
+            <Areas.Author
+              flex
+              alignItems="center"
+              flexDirection="column"
+              flexDirectionSm="row"
+            >
               <Image
                 sx={{ width: '33px' }}
                 src={authorAvatar}
@@ -55,13 +158,17 @@ const TopicsCart: React.FC<Topic> = ({
                 as="span"
                 color="text.0"
                 variant="small"
-                sx={{ marginLeft: 2 }}
+                sx={{
+                  marginLeft: [0, 2, null, null, null],
+                  marginTop: ['5px', null, null, null, null],
+                  textAlign: ['center', 'left', null, null, null],
+                }}
               >
                 {username}
               </Text>
             </Areas.Author>
 
-            <Areas.Button flex alignItems="center">
+            <Areas.Button flex alignItems="center" justifyContent="center">
               <Button
                 variant="text"
                 sx={{

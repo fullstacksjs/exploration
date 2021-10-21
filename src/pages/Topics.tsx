@@ -18,6 +18,7 @@ const Topics = () => {
 
         <Planet
           sx={{
+            display: ['none', null, null, null, null],
             position: 'fixed',
             right: 0,
             top: 0,
@@ -28,7 +29,7 @@ const Topics = () => {
         />
 
         {!isNull(thisWeek) ? (
-          <Container>
+          <Container sx={{ display: 'flex' }}>
             <TopicsCart {...thisWeek} />
           </Container>
         ) : (
@@ -43,7 +44,7 @@ const Topics = () => {
 
         {!isNullOrEmpty(topics) ? (
           topics.map((topic) => (
-            <Container key={topic.id}>
+            <Container key={topic.id} sx={{ display: 'flex' }}>
               <TopicsCart {...topic} />
             </Container>
           ))
