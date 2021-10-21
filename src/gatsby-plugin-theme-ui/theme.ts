@@ -46,6 +46,7 @@ const theme: Theme = {
     primary: {
       padding: 6,
       borderRadius: 0,
+      display: 'flex',
       background: `
         linear-gradient(to right, transparent 70%, hsla(219, 40%, 88%, 0.2) 0%) top/13px 1px repeat-x,
         linear-gradient(transparent 70%, hsla(219, 40%, 88%, 0.2) 0%) right/1px 13px repeat-y,

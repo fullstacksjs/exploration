@@ -22,12 +22,7 @@ const Login = () => {
       >
         <Card
           sx={{
-            width: ['95%', 'auto'],
-            height: ['calc(100vh - 35px)', 'auto'],
-            position: 'relative',
-            display: ['flex', 'block'],
-            flexDirection: ['column', 'unset'],
-            justifyContent: ['center', 'unset'],
+            flexGrow: [1, 0],
             background: [
               'none',
               `linear-gradient(to right, transparent 70%, hsla(219, 40%, 88%, 0.2) 0%) top/13px 1px repeat-x,
@@ -37,13 +32,22 @@ const Login = () => {
             ],
           }}
         >
-          <Flex sx={{ flexDirection: 'column', gap: 4 }}>
+          <Flex
+            sx={{
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              flex: 1,
+              gap: 4,
+            }}
+          >
             <Flex
               sx={{
                 flexDirection: 'column',
                 width: ['100%', '333px'],
                 gap: 8,
                 alignItems: 'center',
+                justifyContent: 'center',
+                flex: 1,
               }}
             >
               <Hero />
@@ -61,15 +65,6 @@ const Login = () => {
             <GithubButton
               onClick={() => {
                 navigate('/Topics');
-              }}
-              sx={{
-                position: ['absolute', 'unset'],
-                bottom: 0,
-                left: 0,
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
               }}
             >
               Login with Github
