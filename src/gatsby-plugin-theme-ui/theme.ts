@@ -108,7 +108,7 @@ const theme: Theme = {
     },
 
     heading2: {
-      fontSize: 4,
+      fontSize: [3, 4, null, null, null],
     },
 
     heading4: {
