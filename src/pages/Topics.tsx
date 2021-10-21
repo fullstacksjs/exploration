@@ -11,14 +11,17 @@ const Topics = () => {
   return (
     <>
       <Seo title="This Week" />
-      <Flex as="main" sx={{ paddingY: 12, flexDirection: 'column', gap: 8 }}>
+      <Flex
+        as="main"
+        sx={{ paddingY: [6, 12], flexDirection: 'column', gap: [6, 8] }}
+      >
         <Heading variant="heading2" sx={{ alignSelf: 'center' }}>
           THIS WEEK
         </Heading>
 
         <Planet
           sx={{
-            display: ['none', null],
+            display: ['none', 'block'],
             position: 'fixed',
             right: 0,
             top: 0,
@@ -29,7 +32,7 @@ const Topics = () => {
         />
 
         {!isNull(thisWeek) ? (
-          <Container sx={{ display: 'flex' }}>
+          <Container sx={{ display: 'flex', px: [6, 0] }}>
             <TopicsCart {...thisWeek} />
           </Container>
         ) : (
@@ -44,7 +47,7 @@ const Topics = () => {
 
         {!isNullOrEmpty(topics) ? (
           topics.map((topic) => (
-            <Container key={topic.id} sx={{ display: 'flex' }}>
+            <Container key={topic.id} sx={{ display: 'flex', px: [6, 0] }}>
               <TopicsCart {...topic} />
             </Container>
           ))
