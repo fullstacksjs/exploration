@@ -56,13 +56,13 @@ const TopicsCart: React.FC<Topic> = ({
               alignItems="center"
               justifyContent="center"
             >
-              <Icon sx={{ width: [60, 95, null, null, null] }} />
+              <Icon sx={{ width: [60, 95] }} />
             </Areas.Icon>
             <Areas.Title>
               <Heading
                 as="h3"
                 sx={{
-                  textAlign: ['center', 'left', null, null, null],
+                  textAlign: ['center', 'left'],
                   marginBottom: -2,
                 }}
                 variant="heading4"
@@ -80,9 +80,6 @@ const TopicsCart: React.FC<Topic> = ({
                   maxHeight: [
                     showDetails ? 'max-content' : '95px',
                     'max-content',
-                    null,
-                    null,
-                    null,
                   ],
                   overflow: 'hidden',
                 }}
@@ -92,7 +89,7 @@ const TopicsCart: React.FC<Topic> = ({
                   color="text.1"
                   variant="text.body"
                   sx={{
-                    textAlign: ['center', 'left', null, null, null],
+                    textAlign: ['center', 'left'],
                   }}
                 >
                   {desc}
@@ -100,7 +97,7 @@ const TopicsCart: React.FC<Topic> = ({
                 {!showDetails && hasDescOverflow && (
                   <Box
                     sx={{
-                      display: ['block', 'none', null, null, null],
+                      display: ['block', 'none'],
                       position: 'absolute',
                       bottom: 0,
                       left: 0,
@@ -118,7 +115,7 @@ const TopicsCart: React.FC<Topic> = ({
                   variant="text"
                   onClick={() => setShowDetails(!showDetails)}
                   sx={{
-                    display: ['block', 'none', null, null, null],
+                    display: ['block', 'none'],
                     textAlign: 'center',
                     cursor: 'pointer',
                     m: 0,
@@ -159,9 +156,9 @@ const TopicsCart: React.FC<Topic> = ({
                 color="text.0"
                 variant="small"
                 sx={{
-                  marginLeft: [0, 2, null, null, null],
-                  marginTop: ['5px', null, null, null, null],
-                  textAlign: ['center', 'left', null, null, null],
+                  marginLeft: [0, 2, null],
+                  marginTop: ['5px', null],
+                  textAlign: ['center', 'left'],
                 }}
               >
                 {username}

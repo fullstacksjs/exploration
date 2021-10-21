@@ -18,7 +18,7 @@ const Topics = () => {
 
         <Planet
           sx={{
-            display: ['none', null, null, null, null],
+            display: ['none', null],
             position: 'fixed',
             right: 0,
             top: 0,
