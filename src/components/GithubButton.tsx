@@ -26,7 +26,7 @@ const GithubButton: React.FC<ButtonProps> = (props) => (
     }}
     {...props}
   >
-    <GithubIcon width="16px" />
+    <GithubIcon width="16px" sx={{ mr: 2 }} />
     <Box
       sx={{
         display: 'flex',
