@@ -16,7 +16,7 @@ const HomagePage = () => {
           justifyContent: 'center',
           minHeight: '100vh',
           gap: 14,
-          '@media screen and (max-width: 450px)': {
+          '@media screen and (max-width: 576px)': {
             flexDirection: 'column-reverse',
           },
         }}
