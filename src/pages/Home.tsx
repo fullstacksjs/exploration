@@ -11,14 +11,11 @@ const HomagePage = () => {
       <Flex
         as="main"
         sx={{
-          flexDirection: 'column',
+          flexDirection: ['column-reverse', 'column'],
           alignItems: 'center',
           justifyContent: 'center',
           minHeight: '100vh',
           gap: 14,
-          '@media screen and (max-width: 576px)': {
-            flexDirection: 'column-reverse',
-          },
         }}
       >
         <Planet sx={{ width: '320px', height: '320px' }} />
