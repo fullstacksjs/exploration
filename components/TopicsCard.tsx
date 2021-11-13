@@ -3,8 +3,8 @@ import { Composition } from '@atomic-layout/emotion';
 import { useState } from 'react';
 import { Box, Button, Card, Heading, Image, Text, useThemeUI } from 'theme-ui';
 
-import { ReactComponent as ChevronDownIcon } from '../assets/ChevronDownIcon.svg';
-import { ReactComponent as ChevronUpIcon } from '../assets/ChevronUpIcon.svg';
+import ChevronDownIcon from './Icons/ChevronDownIcon.svg';
+import ChevronUpIcon from './Icons/ChevronUpIcon.svg';
 import { Topic } from '../mocks/topics';
 
 const areasMobile = `
@@ -140,7 +140,7 @@ const TopicsCart: React.FC<Topic> = ({
             >
               <Image
                 sx={{ width: '33px' }}
-                src={authorAvatar}
+                src={authorAvatar.src}
                 variant="images.avatar"
                 alt="Avatar"
               />

@@ -20,18 +20,14 @@
     "strictNullChecks": false,
     "strictPropertyInitialization": false,
     "module": "ESNext",
-    "lib": [
-      "DOM",
-      "ESNext.Intl",
-      "ES2020"
-    ],
+    "lib": ["DOM", "ESNext.Intl", "ES2020"],
     "noEmit": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "allowJs": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "incremental": true
   },
-  "include": [
-    "src"
-  ]
+  "exclude": ["node_modules"],
+  "include": ["next-env.d.ts", "assets.d.ts", "**/*.ts", "**/*.tsx"]
 }

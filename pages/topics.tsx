@@ -3,14 +3,12 @@ import { Box, Container, Flex, Heading } from 'theme-ui';
 
 import Divider from '../components/Divider';
 import Planet from '../components/Planet';
-import Seo from '../components/Seo';
 import TopicsCart from '../components/TopicsCard';
 import { thisWeek, topics } from '../mocks/topics';
 
 const Topics = () => {
   return (
     <>
-      <Seo title="This Week" />
       <Flex
         as="main"
         sx={{ paddingY: [6, 12], flexDirection: 'column', gap: [6, 8] }}

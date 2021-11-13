@@ -13,6 +13,7 @@ function themeUiSvgTemplate(
   const viewBox = getAttributeValue('viewBox');
   const viewBoxProp = viewBox ? `viewBox: '${viewBox}',` : '';
   const props = `{ ${viewBoxProp} ...props }`;
+
   return typeScriptTpl.ast`
   import { jsx } from 'theme-ui';
   ${imports}

@@ -1,6 +1,6 @@
 import { Box, Button, ButtonProps } from 'theme-ui';
 
-import { ReactComponent as GithubIcon } from '../assets/GithubIcon.svg';
+import GithubIcon from './Icons/GithubIcon.svg';
 
 const GithubButton: React.FC<ButtonProps> = (props) => (
   <Button
@@ -45,4 +45,5 @@ const GithubButton: React.FC<ButtonProps> = (props) => (
     </Box>
   </Button>
 );
+
 export default GithubButton;

@@ -1,7 +1,0 @@
-{
-  "root": true,
-  "extends": ["@fullstacksjs"],
-  "rules": {
-    "@typescript-eslint/no-use-before-define": ["off"]
-  }
-}

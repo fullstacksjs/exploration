@@ -1,13 +1,13 @@
-import { ReactComponent as BabelIcon } from '../assets/Babel.svg';
-import { ReactComponent as EslintIcon } from '../assets/Eslint.svg';
-import CardAvatar from '../images/cardAvatar.png';
+import BabelIcon from './Babel.svg';
+import EslintIcon from './Eslint.svg';
+import CardAvatar from './avatar.png';
 
 export interface Topic {
   id: number;
   title: string;
   desc: string;
   icon: SVGComponent;
-  authorAvatar: string;
+  authorAvatar: StaticImageData;
   username: string;
   votes: number;
   isVoted?: boolean;
