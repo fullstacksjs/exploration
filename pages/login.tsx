@@ -1,8 +1,9 @@
+import { signIn, useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import { Card, Flex, Heading, Text } from 'theme-ui';
-
-import PlanetSvg from '../components/Icons/Planet.svg';
 import GithubButton from '../components/GithubButton';
 import Hero from '../components/Hero';
+import PlanetSvg from '../components/Icons/Planet.svg';
 
 const Login = () => {
   return (
@@ -60,7 +61,8 @@ const Login = () => {
           </Flex>
           <GithubButton
             onClick={() => {
-              console.log('Login');
+              // @ts-expect-error PENDING: NextAuth typing problem
+              signIn('github', { callbackUrl: 'http://localhost:3000/topics' });
             }}
           >
             Login with Github
