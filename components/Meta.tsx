@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import theme from '../lib/theme';
 
-const makeTitle = (title, name) =>
+const makeTitle = (title: string, name: string) =>
   title === name ? title : `${title} – ${name}`;
 
 interface MetaProps {
@@ -22,23 +22,16 @@ const Meta: React.FC<MetaProps> = ({
 }) => {
   // @ts-expect-error It's OK.
   const primaryColor: string = theme.colors.primary.__default;
+  const fullTitle = makeTitle(title, name);
 
   return (
     <Head>
       <meta key="og_locale" property="og:locale" content="en_US" />
       <meta key="og_type" property="og:type" content="website" />
       <meta key="og_site" property="og:site_name" content={name} />
-      <title key="title">{makeTitle(title, name)}</title>
-      <meta
-        key="og_title"
-        property="og:title"
-        content={makeTitle(title, name)}
-      />
-      <meta
-        key="tw_title"
-        name="twitter:title"
-        content={makeTitle(title, name)}
-      />
+      <title key="title">{fullTitle}</title>
+      <meta key="og_title" property="og:title" content={fullTitle} />
+      <meta key="tw_title" name="twitter:title" content={fullTitle} />
       {description && (
         <>
           <meta key="desc" name="description" content={description} />
@@ -68,32 +61,89 @@ const Meta: React.FC<MetaProps> = ({
         content={primaryColor}
       />
       <link
-        key="safari_icon"
-        rel="mask-icon"
-        href={`${url}/safari-pinned-tab.png`}
-        color={primaryColor}
+        rel="apple-touch-icon-precomposed"
+        sizes="57x57"
+        href="/icons/apple-touch-icon-57x57.png"
       />
       <link
-        key="apple_icon"
-        rel="apple-touch-icon"
-        sizes="180x180"
-        href={`${url}/apple-touch-icon.png`}
+        rel="apple-touch-icon-precomposed"
+        sizes="114x114"
+        href="/icons/apple-touch-icon-114x114.png"
       />
       <link
-        key="favicon_32"
+        rel="apple-touch-icon-precomposed"
+        sizes="72x72"
+        href="/icons/apple-touch-icon-72x72.png"
+      />
+      <link
+        rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/icons/apple-touch-icon-144x144.png"
+      />
+      <link
+        rel="apple-touch-icon-precomposed"
+        sizes="60x60"
+        href="/icons/apple-touch-icon-60x60.png"
+      />
+      <link
+        rel="apple-touch-icon-precomposed"
+        sizes="120x120"
+        href="/icons/apple-touch-icon-120x120.png"
+      />
+      <link
+        rel="apple-touch-icon-precomposed"
+        sizes="76x76"
+        href="/icons/apple-touch-icon-76x76.png"
+      />
+      <link
+        rel="apple-touch-icon-precomposed"
+        sizes="152x152"
+        href="/icons/apple-touch-icon-152x152.png"
+      />
+      <link
         rel="icon"
         type="image/png"
+        href="/icons/favicon-196x196.png"
+        sizes="196x196"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        href="/icons/favicon-96x96.png"
+        sizes="96x96"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        href="/icons/favicon-32x32.png"
         sizes="32x32"
-        href={`${url}/favicon-32x32.png`}
       />
       <link
-        key="favicon_16"
         rel="icon"
         type="image/png"
+        href="/icons/favicon-16x16.png"
         sizes="16x16"
-        href={`${url}/favicon-16x16.png`}
       />
-      <link key="manifest" rel="manifest" href={`${url}/site.webmanifest`} />
+      <link
+        rel="icon"
+        type="image/png"
+        href="/icons/favicon-128.png"
+        sizes="128x128"
+      />
+      <meta name="application-name" content="&nbsp;" />
+      <meta name="msapplication-TileColor" content="#FFFFFF" />
+      <meta name="msapplication-TileImage" content="mstile-144x144.png" />
+      <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
+      <meta
+        name="msapplication-square150x150logo"
+        content="mstile-150x150.png"
+      />
+      <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
+      <meta
+        name="msapplication-square310x310logo"
+        content="mstile-310x310.png"
+      />
+      <link key="manifest" rel="manifest" href="/site.webmanifest" />
       {children}
     </Head>
   );

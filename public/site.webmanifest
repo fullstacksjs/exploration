@@ -1,0 +1,41 @@
+{
+  "name": "FullstacksJS - Exploration",
+  "short_name": "Exploration",
+  "start_url": "/",
+  "description": "Exploration",
+  "background_color": "#FFFFFF",
+  "theme_color": "#4CEB9C",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "icons/mstile-70x70.png",
+      "sizes": "70x70",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/mstile-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/favicon-196x196.png",
+      "sizes": "196x196",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/mstile-310x310.png",
+      "sizes": "310x310",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
