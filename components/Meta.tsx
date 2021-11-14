@@ -17,7 +17,6 @@ const Meta: React.FC<MetaProps> = ({
   name = 'Exploration',
   description = "Let't Learn together",
   image = '',
-  url = 'https://explore.fullstacks.ir/',
   children,
 }) => {
   // @ts-expect-error It's OK.

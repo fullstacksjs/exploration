@@ -1,5 +1,4 @@
-import { signIn, useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
+import { signIn } from 'next-auth/react';
 import { Card, Flex, Heading, Text } from 'theme-ui';
 import GithubButton from '../components/GithubButton';
 import Hero from '../components/Hero';
