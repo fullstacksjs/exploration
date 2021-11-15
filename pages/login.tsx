@@ -61,7 +61,7 @@ const Login = () => {
           <GithubButton
             onClick={() => {
               // @ts-expect-error PENDING: NextAuth typing problem
-              signIn('github', { callbackUrl: 'http://localhost:3000/topics' });
+              signIn('github', { callbackUrl: '/topics', redirect: false });
             }}
           >
             Login with Github
