@@ -8,7 +8,9 @@ import Planet from '../components/Planet';
 const HomagePage = () => {
   const router = useRouter();
   useEffect(() => {
-    router.push('/login');
+    setTimeout(() => {
+      router.push('/login');
+    }, 2000);
   }, [router]);
 
   return (

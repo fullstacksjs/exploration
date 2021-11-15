@@ -7,6 +7,7 @@ import Planet from '../components/Planet';
 import TopicsCart from '../components/TopicsCard';
 import { thisWeek, topics } from '../mocks/topics';
 import { useRouter } from 'next/router';
+import { LoadingOverlay } from '../components/LoadingOverlay';
 
 const Topics = () => {
   const router = useRouter();
@@ -17,7 +18,7 @@ const Topics = () => {
     },
   });
 
-  if (status === 'loading') return <Box>Loading</Box>;
+  if (status === 'loading') return <LoadingOverlay />;
 
   return (
     <Flex
