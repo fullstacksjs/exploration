@@ -1,15 +1,20 @@
-import { isNull, isNullOrEmpty } from '@fullstacksjs/toolbox';
-import { Text, Box, Container, Flex, Heading } from 'theme-ui';
-import { useSession, signOut } from 'next-auth/react';
-
-import Divider from '../components/Divider';
-import Planet from '../components/Planet';
-import TopicsCart from '../components/TopicsCard';
-import { thisWeek, topics } from '../mocks/topics';
+import { isNullOrEmpty } from '@fullstacksjs/toolbox';
+import { signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import { Box, Container, Flex, Heading, Text } from 'theme-ui';
+import Divider from '../components/Divider';
 import { LoadingOverlay } from '../components/LoadingOverlay';
+import { ThisWeekSection } from '../components/ThisWeekSection';
+import TopicsCart from '../components/TopicsCard';
+import { getSdk, TopicsQuery } from '../graphql/generated';
+import { getClient } from '../lib/datocms';
 
-const Topics = () => {
+interface TopicsProps {
+  allTopics: TopicsQuery['allTopics'];
+  thisWeek: TopicsQuery['allTopics'][number];
+}
+
+const Topics: React.FC<TopicsProps> = ({ thisWeek, allTopics }) => {
   const router = useRouter();
   const { data: session, status } = useSession({
     required: true,
@@ -35,29 +40,7 @@ const Topics = () => {
           Logout
         </Text>
       </Flex>
-      <Heading variant="heading2" sx={{ alignSelf: 'center' }}>
-        THIS WEEK
-      </Heading>
-
-      <Planet
-        sx={{
-          display: ['none', 'block'],
-          position: 'fixed',
-          right: 0,
-          top: 0,
-          width: '466px',
-          height: '466px',
-          transform: 'translate(50%, -50%)',
-        }}
-      />
-
-      {!isNull(thisWeek) ? (
-        <Container sx={{ display: 'flex', px: [6, 0] }}>
-          <TopicsCart {...thisWeek} />
-        </Container>
-      ) : (
-        <Heading as="h2">There are no user to display</Heading>
-      )}
+      <ThisWeekSection topic={thisWeek} />
 
       <Box sx={{ position: 'relative' }}>
         <Box sx={{ textAlign: 'center' }}>
@@ -65,8 +48,8 @@ const Topics = () => {
         </Box>
       </Box>
 
-      {!isNullOrEmpty(topics) ? (
-        topics.map((topic) => (
+      {!isNullOrEmpty(allTopics) ? (
+        allTopics.map((topic) => (
           <Container key={topic.id} sx={{ display: 'flex', px: [6, 0] }}>
             <TopicsCart {...topic} />
           </Container>
@@ -77,5 +60,11 @@ const Topics = () => {
     </Flex>
   );
 };
+
+export async function getStaticProps() {
+  const sdk = getSdk(getClient(true));
+  const { allTopics } = await sdk.Topics();
+  return { props: { allTopics } };
+}
 
 export default Topics;

@@ -1,0 +1,31 @@
+query Topics {
+  allTopics {
+    id
+    title
+    icon {
+      id
+      url
+    }
+    description
+    lecturers {
+      id
+      name
+      avatar {
+        id
+        responsiveImage {
+          alt
+          base64
+          bgColor
+          title
+          src
+          srcSet
+        }
+      }
+    }
+    _status
+    _firstPublishedAt
+  }
+  _allTopicsMeta {
+    count
+  }
+}

@@ -1,0 +1,19 @@
+overwrite: true
+
+schema:
+  - ${SCHEMA_URL}:
+      method: POST
+      headers:
+        authorization: "Bearer 631313a24e9ce35b074d4b72a3473c"
+
+documents: "graphql/**/*.graphql"
+generates:
+  graphql/generated.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - typescript-graphql-request
+
+hooks:
+  afterAllFileWrite:
+    - eslint --fix

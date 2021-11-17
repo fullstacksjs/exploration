@@ -1,11 +1,12 @@
 /* eslint-disable max-lines-per-function */
 import { Composition } from '@atomic-layout/emotion';
+import { not } from '@fullstacksjs/toolbox';
 import { useState } from 'react';
 import { Box, Button, Card, Heading, Image, Text, useThemeUI } from 'theme-ui';
+import { TopicsQuery } from '../graphql/generated';
 
 import ChevronDownIcon from './Icons/ChevronDownIcon.svg';
 import ChevronUpIcon from './Icons/ChevronUpIcon.svg';
-import { Topic } from '../mocks/topics';
 
 const areasMobile = `
   icon
@@ -21,20 +22,23 @@ const areasTablet = `
   icon author button
 `;
 
-const TopicsCart: React.FC<Topic> = ({
+// eslint-disable-next-line dot-notation
+type TopicQuery = TopicsQuery['allTopics'][number];
+interface TopicsCartProps extends TopicQuery {}
+
+const TopicsCart: React.FC<TopicsCartProps> = ({
   title,
-  desc,
-  icon: Icon,
-  username,
-  authorAvatar,
-  votes,
-  isVoted,
+  description,
+  icon,
+  lecturers,
 }) => {
   const { theme } = useThemeUI();
+  const isVoted = true;
+  const votes = 10;
 
   const [showDetails, setShowDetails] = useState(false);
 
-  const hasDescOverflow = desc.length > 120;
+  const hasDescOverflow = description!.length > 120;
 
   return (
     <Card>
@@ -44,9 +48,9 @@ const TopicsCart: React.FC<Topic> = ({
         templateCols="auto"
         templateColsSm="85px 1fr 40px"
         templateColsMd="95px 1fr 70px"
-        gapRow={theme.space[4]}
-        gapRowSm={theme.space[2]}
-        gapColSm={theme.space[6]}
+        gapRow={theme.space![4]}
+        gapRowSm={theme.space![2]}
+        gapColSm={theme.space![6]}
       >
         {(Areas) => (
           <>
@@ -56,16 +60,13 @@ const TopicsCart: React.FC<Topic> = ({
               alignItems="center"
               justifyContent="center"
             >
-              <Icon sx={{ width: [70, 95] }} />
+              <Image src={icon[0].url} sx={{ width: [70, 95] }} alt="avatar" />
             </Areas.Icon>
             <Areas.Title>
               <Heading
                 as="h3"
                 variant="heading4"
-                sx={{
-                  textAlign: ['center', 'left'],
-                  marginBottom: -2,
-                }}
+                sx={{ textAlign: ['center', 'left'], marginBottom: -2 }}
               >
                 {title}
               </Heading>
@@ -92,7 +93,7 @@ const TopicsCart: React.FC<Topic> = ({
                     textAlign: ['center', 'left'],
                   }}
                 >
-                  {desc}
+                  {description}
                 </Text>
                 {!showDetails && hasDescOverflow && (
                   <Box
@@ -111,7 +112,7 @@ const TopicsCart: React.FC<Topic> = ({
               {hasDescOverflow ? (
                 <Text
                   variant="small"
-                  onClick={() => setShowDetails(!showDetails)}
+                  onClick={() => setShowDetails(not)}
                   as="span"
                   role="link"
                   sx={{
@@ -120,7 +121,7 @@ const TopicsCart: React.FC<Topic> = ({
                     px: 2,
                     textAlign: 'center',
                     cursor: 'pointer',
-                    display: 'inline',
+                    display: ['inline', 'none'],
                     marginTop: '10px',
                     '&:focus': {
                       outline: '1px solid',
@@ -140,7 +141,7 @@ const TopicsCart: React.FC<Topic> = ({
             >
               <Image
                 sx={{ width: '33px' }}
-                src={authorAvatar.src}
+                srcSet={lecturers[0].avatar[0].responsiveImage?.srcSet}
                 variant="images.avatar"
                 alt="Avatar"
               />
@@ -153,7 +154,7 @@ const TopicsCart: React.FC<Topic> = ({
                   textAlign: ['center', 'left'],
                 }}
               >
-                {username}
+                {lecturers[0].name}
               </Text>
             </Areas.Author>
 

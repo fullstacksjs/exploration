@@ -32,3 +32,4 @@ Menlo
 monospace
 fontsource
 semibold
+datocms
