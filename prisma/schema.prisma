@@ -1,0 +1,31 @@
+datasource db {
+  url                  = env("DATABASE_URL")
+  shadowDatabaseUrl    = env("DATABASE_URL_SHADOW")
+  provider             = "mysql"
+  referentialIntegrity = "prisma"
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+model User {
+  email String @id
+  Votes Vote[]
+}
+
+model Topic {
+  id    String @id
+  Votes Vote[]
+}
+
+model Vote {
+  id        String  @id
+  User      User?   @relation(fields: [userEmail], references: [email])
+  userEmail String?
+  Topic     Topic?  @relation(fields: [topicId], references: [id])
+  topicId   String?
+
+  @@unique([userEmail, topicId])
+}

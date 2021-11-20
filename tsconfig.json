@@ -19,7 +19,7 @@
     "strict": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": false,
-    "module": "ESNext",
+    "module": "CommonJS",
     "lib": ["DOM", "ESNext.Intl", "ES2020"],
     "noEmit": true,
     "isolatedModules": true,
