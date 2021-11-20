@@ -1,12 +1,16 @@
 /* eslint-disable max-lines-per-function */
 import { Composition } from '@atomic-layout/emotion';
 import { not } from '@fullstacksjs/toolbox';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box, Button, Card, Heading, Image, Text, useThemeUI } from 'theme-ui';
 import { TopicsQuery } from '../graphql/generated';
+import useSWR from 'swr';
 
 import ChevronDownIcon from './Icons/ChevronDownIcon.svg';
 import ChevronUpIcon from './Icons/ChevronUpIcon.svg';
+import { fetcher } from '../lib/fetcher';
+import { TopicVote } from '../pages/api/topics/[id]';
+import { ApiError } from 'next/dist/server/api-utils';
 
 const areasMobile = `
   icon
@@ -26,7 +30,21 @@ const areasTablet = `
 type TopicQuery = TopicsQuery['allTopics'][number];
 interface TopicsCartProps extends TopicQuery {}
 
+function useTopic(id: string) {
+  const { data, error } = useSWR<TopicVote, ApiError>(
+    `/api/topics/${id}`,
+    fetcher,
+  );
+
+  return {
+    topic: data,
+    isLoading: !error && !data,
+    error,
+  };
+}
+
 const TopicsCart: React.FC<TopicsCartProps> = ({
+  id,
   title,
   description,
   icon,
@@ -34,8 +52,7 @@ const TopicsCart: React.FC<TopicsCartProps> = ({
 }) => {
   const { theme } = useThemeUI();
   const isVoted = true;
-  const votes = 10;
-
+  const { topic, error, isLoading } = useTopic(id);
   const [showDetails, setShowDetails] = useState(false);
 
   const hasDescOverflow = description!.length > 120;
@@ -178,7 +195,14 @@ const TopicsCart: React.FC<TopicsCartProps> = ({
                   as="span"
                   sx={{ display: 'block', lineHeight: '20px' }}
                 >
-                  {votes}&nbsp;Votes
+                  {
+                    // TODO: handle loading and error state better
+                    isLoading
+                      ? 'L'
+                      : error
+                      ? 'N/A'
+                      : `${topic.votesCount} Votes`
+                  }
                 </Text>
                 {isVoted ? <ChevronDownIcon width="16px" /> : null}
               </Button>
