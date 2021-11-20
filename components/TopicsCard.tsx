@@ -1,7 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import { Composition } from '@atomic-layout/emotion';
 import { not } from '@fullstacksjs/toolbox';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Box, Button, Card, Heading, Image, Text, useThemeUI } from 'theme-ui';
 import { TopicsQuery } from '../graphql/generated';
 import useSWR from 'swr';
@@ -201,7 +201,7 @@ const TopicsCart: React.FC<TopicsCartProps> = ({
                       ? 'L'
                       : error
                       ? 'N/A'
-                      : `${topic.votesCount} Votes`
+                      : `${topic!.votesCount} Votes`
                   }
                 </Text>
                 {isVoted ? <ChevronDownIcon width="16px" /> : null}

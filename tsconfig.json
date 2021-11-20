@@ -11,7 +11,7 @@
     "noEmitOnError": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "removeComments": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,

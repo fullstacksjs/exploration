@@ -17,9 +17,11 @@ const Planet: React.FC<SxComponent> = (props) => {
     <Box
       as={RiveComponent}
       onMouseEnter={() => {
+        if (onHoverInput == null) return;
         onHoverInput.value = true;
       }}
       onMouseLeave={() => {
+        if (onHoverInput == null) return;
         onHoverInput.value = false;
       }}
       {...props}
