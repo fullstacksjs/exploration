@@ -18,6 +18,7 @@
     "axios": "0.24.0",
     "graphql": "15",
     "graphql-request": "3.6.1",
+    "graphql-tag": "2.12.6",
     "next": "12.0.7",
     "next-auth": "4.0.5",
     "react": "17.0.2",
