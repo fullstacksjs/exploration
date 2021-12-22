@@ -1,0 +1,23 @@
+#!/bin/bash
+
+SESSION="exploration"
+
+DB_DEV="pscale connect exploration dev --port 3309"
+DB_SHADOW="pscale connect exploration shadow --port 3308"
+DEV_SERVER="npm run dev"
+
+if ! tmux has-session -t $SESSION &>/dev/null; then
+  npm run gen
+  tmux new-session -s $SESSION -n dev -d
+
+  tmux new-window -t $SESSION -n db
+  tmux send-keys -t $SESSION:db.0 "$DB_DEV" C-m
+
+  tmux split-window -t $SESSION:db -h
+  tmux send-keys -t $SESSION:db.1 "$DB_SHADOW" C-m
+
+  tmux send-keys -t $SESSION:dev.0 "$DEV_SERVER" C-m
+  tmux split-window -t $SESSION:dev -h
+fi
+
+tmux attach-session -t $SESSION:dev

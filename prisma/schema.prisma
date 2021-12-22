@@ -21,7 +21,7 @@ model Topic {
 }
 
 model Vote {
-  id        String  @id
+  id        String  @id @default(cuid())
   User      User?   @relation(fields: [userEmail], references: [email])
   userEmail String?
   Topic     Topic?  @relation(fields: [topicId], references: [id])

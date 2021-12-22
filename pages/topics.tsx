@@ -2,10 +2,10 @@ import { isNullOrEmpty } from '@fullstacksjs/toolbox';
 import { signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { Box, Container, Flex, Heading, Text } from 'theme-ui';
-import Divider from '../components/Divider';
+import { Divider } from '../components/Divider';
 import { LoadingOverlay } from '../components/LoadingOverlay';
 import { ThisWeekSection } from '../components/ThisWeekSection';
-import TopicsCart from '../components/TopicsCard';
+import { TopicsCart } from '../components/TopicsCard';
 import { getSdk, TopicsQuery } from '../graphql/generated';
 import { getClient } from '../lib/datocms';
 
@@ -49,11 +49,11 @@ const Topics: React.FC<TopicsProps> = ({ thisWeek, allTopics }) => {
       </Box>
 
       {!isNullOrEmpty(allTopics) ? (
-        allTopics.map((topic) => (
-          <Container key={topic.id} sx={{ display: 'flex', px: [6, 0] }}>
-            <TopicsCart {...topic} />
-          </Container>
-        ))
+        <Container sx={{ display: 'flex', px: [6, 0] }}>
+          {allTopics.map((topic) => (
+            <TopicsCart key={topic.id} {...topic} />
+          ))}
+        </Container>
       ) : (
         <Heading as="h2">There are no user to display</Heading>
       )}

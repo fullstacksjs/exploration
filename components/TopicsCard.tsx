@@ -1,16 +1,13 @@
 /* eslint-disable max-lines-per-function */
 import { Composition } from '@atomic-layout/emotion';
-import { not } from '@fullstacksjs/toolbox';
+import { isNull, not } from '@fullstacksjs/toolbox';
 import { useState } from 'react';
 import { Box, Button, Card, Heading, Image, Text, useThemeUI } from 'theme-ui';
 import { TopicsQuery } from '../graphql/generated';
-import useSWR from 'swr';
-
+import { useTopic, useVoteDown, useVoteUp } from '../operations';
 import ChevronDownIcon from './Icons/ChevronDownIcon.svg';
 import ChevronUpIcon from './Icons/ChevronUpIcon.svg';
-import { fetcher } from '../lib/fetcher';
-import { TopicVote } from '../pages/api/topics/[id]';
-import { ApiError } from 'next/dist/server/api-utils';
+import { PuffLoader } from './PuffLoader';
 
 const areasMobile = `
   icon
@@ -26,24 +23,10 @@ const areasTablet = `
   icon author button
 `;
 
-// eslint-disable-next-line dot-notation
 type TopicQuery = TopicsQuery['allTopics'][number];
 interface TopicsCartProps extends TopicQuery {}
 
-function useTopic(id: string) {
-  const { data, error } = useSWR<TopicVote, ApiError>(
-    `/api/topics/${id}`,
-    fetcher,
-  );
-
-  return {
-    topic: data,
-    isLoading: !error && !data,
-    error,
-  };
-}
-
-const TopicsCart: React.FC<TopicsCartProps> = ({
+export const TopicsCart: React.FC<TopicsCartProps> = ({
   id,
   title,
   description,
@@ -51,9 +34,11 @@ const TopicsCart: React.FC<TopicsCartProps> = ({
   lecturers,
 }) => {
   const { theme } = useThemeUI();
-  const isVoted = true;
-  const { topic, error, isLoading } = useTopic(id);
+  const { data: topic, isLoading: isTopicLoading } = useTopic(id);
   const [showDetails, setShowDetails] = useState(false);
+  const { mutate: voteUp, isLoading: isVoteUpLoading } = useVoteUp();
+  const { mutate: voteDown, isLoading: isVoteDownLoading } = useVoteDown();
+  const isLoading = isVoteDownLoading || isVoteUpLoading || isTopicLoading;
 
   const hasDescOverflow = description!.length > 120;
 
@@ -181,30 +166,34 @@ const TopicsCart: React.FC<TopicsCartProps> = ({
                 sx={{
                   p: 0,
                   display: 'flex',
-                  color: isVoted ? 'accent' : 'text',
+                  color: topic?.isVoted ? 'accent' : 'text',
                   flexDirection: 'column',
                   alignItems: 'center',
                   textTransform: 'unset',
                   cursor: 'pointer',
                   gap: 1,
                 }}
+                disabled={isLoading}
+                onClick={() => {
+                  if (isNull(topic)) return;
+                  return topic?.isVoted ? voteDown(topic.id) : voteUp(topic.id);
+                }}
               >
-                {!isVoted ? <ChevronUpIcon width="16px" /> : null}
-                <Text
-                  variant="lead"
-                  as="span"
-                  sx={{ display: 'block', lineHeight: '20px' }}
-                >
-                  {
-                    // TODO: handle loading and error state better
-                    isLoading
-                      ? 'L'
-                      : error
-                      ? 'N/A'
-                      : `${topic!.votesCount} Votes`
-                  }
-                </Text>
-                {isVoted ? <ChevronDownIcon width="16px" /> : null}
+                {isLoading ? (
+                  <PuffLoader />
+                ) : (
+                  <>
+                    {!topic?.isVoted ? <ChevronUpIcon width="16px" /> : null}
+                    <Text
+                      variant="lead"
+                      as="span"
+                      sx={{ display: 'block', lineHeight: '20px' }}
+                    >
+                      {topic!.votesCount} Votes
+                    </Text>
+                    {topic?.isVoted ? <ChevronDownIcon width="16px" /> : null}
+                  </>
+                )}
               </Button>
             </Areas.Button>
           </>
@@ -213,5 +202,3 @@ const TopicsCart: React.FC<TopicsCartProps> = ({
     </Card>
   );
 };
-
-export default TopicsCart;

@@ -1,6 +1,6 @@
 import { Heading, HeadingProps } from 'theme-ui';
 
-const Divider: React.FC<HeadingProps> = ({ sx, ...props }) => {
+export const Divider: React.FC<HeadingProps> = ({ sx, ...props }) => {
   return (
     <Heading
       variant="heading2"
@@ -31,5 +31,3 @@ const Divider: React.FC<HeadingProps> = ({ sx, ...props }) => {
     />
   );
 };
-
-export default Divider;
