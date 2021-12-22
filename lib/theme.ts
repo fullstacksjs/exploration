@@ -1,5 +1,5 @@
 import { range } from '@fullstacksjs/toolbox';
-import { Theme } from 'theme-ui';
+import type { Theme } from 'theme-ui';
 
 const theme: Theme = {
   colors: {

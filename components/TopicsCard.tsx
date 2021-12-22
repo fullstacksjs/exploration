@@ -3,7 +3,7 @@ import { Composition } from '@atomic-layout/emotion';
 import { isNull, not } from '@fullstacksjs/toolbox';
 import { useState } from 'react';
 import { Box, Button, Card, Heading, Image, Text, useThemeUI } from 'theme-ui';
-import { TopicsQuery } from '../graphql/generated';
+import type { TopicsQuery } from '../graphql/generated';
 import { useTopic, useVoteDown, useVoteUp } from '../operations';
 import ChevronDownIcon from './Icons/ChevronDownIcon.svg';
 import ChevronUpIcon from './Icons/ChevronUpIcon.svg';

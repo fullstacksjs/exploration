@@ -1,4 +1,5 @@
-import { Heading, HeadingProps } from 'theme-ui';
+import type { HeadingProps } from 'theme-ui';
+import { Heading } from 'theme-ui';
 
 export const Divider: React.FC<HeadingProps> = ({ sx, ...props }) => {
   return (

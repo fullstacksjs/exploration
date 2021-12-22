@@ -1,8 +1,8 @@
 import { isNull } from '@fullstacksjs/toolbox';
 import { Container, Heading } from 'theme-ui';
-import { TopicsQuery } from '../graphql/generated';
+import type { TopicsQuery } from '../graphql/generated';
 import Planet from './Planet';
-import TopicsCart from './TopicsCard';
+import { TopicsCart } from './TopicsCard';
 
 type Topic = TopicsQuery['allTopics'][number];
 

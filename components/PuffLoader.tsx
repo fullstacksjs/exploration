@@ -1,5 +1,6 @@
 import { keyframes } from '@emotion/react';
-import { Box, ThemeUIStyleObject } from 'theme-ui';
+import type { ThemeUIStyleObject } from 'theme-ui';
+import { Box } from 'theme-ui';
 
 const puff = [
   keyframes`

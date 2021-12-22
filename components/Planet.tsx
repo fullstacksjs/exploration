@@ -1,6 +1,7 @@
 import { useRive, useStateMachineInput } from 'rive-react';
-import { RiveProps } from 'rive-react/dist/types/components/Rive';
-import { Box, BoxProps } from 'theme-ui';
+import type { RiveProps } from 'rive-react/dist/types/components/Rive';
+import type { BoxProps } from 'theme-ui';
+import { Box } from 'theme-ui';
 
 interface Planet extends BoxProps, RiveProps {}
 

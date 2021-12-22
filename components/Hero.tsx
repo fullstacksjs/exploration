@@ -1,4 +1,5 @@
-import { Box, Heading, HeadingProps } from 'theme-ui';
+import type { HeadingProps } from 'theme-ui';
+import { Box, Heading } from 'theme-ui';
 
 interface HeroProps extends HeadingProps {}
 

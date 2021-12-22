@@ -4,7 +4,7 @@ import { ThemeProvider } from 'theme-ui';
 import GlobalStyles from '../components/GlobalStyles';
 import React from 'react';
 import { SessionProvider } from 'next-auth/react';
-import { AppProps } from 'next/app';
+import type { AppProps } from 'next/app';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 

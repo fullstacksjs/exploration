@@ -1,4 +1,5 @@
-import { Box, Button, ButtonProps } from 'theme-ui';
+import type { ButtonProps } from 'theme-ui';
+import { Box, Button } from 'theme-ui';
 
 import GithubIcon from './Icons/GithubIcon.svg';
 

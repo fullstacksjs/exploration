@@ -6,7 +6,8 @@ import { Divider } from '../components/Divider';
 import { LoadingOverlay } from '../components/LoadingOverlay';
 import { ThisWeekSection } from '../components/ThisWeekSection';
 import { TopicsCart } from '../components/TopicsCard';
-import { getSdk, TopicsQuery } from '../graphql/generated';
+import type { TopicsQuery } from '../graphql/generated';
+import { getSdk } from '../graphql/generated';
 import { getClient } from '../lib/datocms';
 
 interface TopicsProps {

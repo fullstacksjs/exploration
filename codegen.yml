@@ -4,7 +4,7 @@ schema:
   - ${SCHEMA_URL}:
       method: POST
       headers:
-        authorization: "Bearer 631313a24e9ce35b074d4b72a3473c"
+        authorization: "Bearer ${NEXT_DATOCMS_API_TOKEN}"
 
 documents: "graphql/**/*.graphql"
 generates:

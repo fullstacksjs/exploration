@@ -1,5 +1,5 @@
-import { GraphQLClient } from 'graphql-request';
-import * as Dom from 'graphql-request/dist/types.dom';
+import type { GraphQLClient } from 'graphql-request';
+import type * as Dom from 'graphql-request/dist/types.dom';
 import gql from 'graphql-tag';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -185,6 +185,8 @@ export interface ImgixParams {
    * Specifies an aspect ratio to maintain when resizing and cropping the image
    *
    * Depends on: `fit=crop`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/ar)
    */
   ar?: InputMaybe<Scalars['String']>;
   /**
@@ -351,6 +353,8 @@ export interface ImgixParams {
    * Sets bottom border of an image.
    *
    * Depends on: `border`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border-bottom)
    */
   borderBottom?: InputMaybe<Scalars['IntType']>;
   /**
@@ -359,6 +363,8 @@ export interface ImgixParams {
    * Sets left border of an image.
    *
    * Depends on: `border`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border-left)
    */
   borderLeft?: InputMaybe<Scalars['IntType']>;
   /**
@@ -387,6 +393,8 @@ export interface ImgixParams {
    * Sets right border of an image.
    *
    * Depends on: `border`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border-right)
    */
   borderRight?: InputMaybe<Scalars['IntType']>;
   /**
@@ -395,6 +403,8 @@ export interface ImgixParams {
    * Sets top border of an image.
    *
    * Depends on: `border`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border-top)
    */
   borderTop?: InputMaybe<Scalars['IntType']>;
   /**
@@ -646,7 +656,7 @@ export interface ImgixParams {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/focalpoint-crop/fp-z)
    */
-  fpZ?: InputMaybe<Scalars['IntType']>;
+  fpZ?: InputMaybe<Scalars['FloatType']>;
   /**
    * Gamma
    *
@@ -711,6 +721,12 @@ export interface ImgixParams {
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/invert)
    */
   invert?: InputMaybe<Scalars['BooleanType']>;
+  /**
+   * Iptc Passthrough
+   *
+   * Determine if IPTC data should be passed for JPEG images.
+   */
+  iptc?: InputMaybe<ImgixParamsIptc>;
   /**
    * Lossless Compression
    *
@@ -790,6 +806,14 @@ export interface ImgixParams {
    */
   markPad?: InputMaybe<Scalars['IntType']>;
   /**
+   * Watermark Rotation
+   *
+   * Rotates a watermark or tiled watermarks by a specified number of degrees.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-rot)
+   */
+  markRot?: InputMaybe<Scalars['FloatType']>;
+  /**
    * Watermark Scale
    *
    * Adjusts the scale of the watermark image.
@@ -799,6 +823,16 @@ export interface ImgixParams {
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-scale)
    */
   markScale?: InputMaybe<Scalars['IntType']>;
+  /**
+   * Watermark Tile
+   *
+   * Adds tiled watermark.
+   *
+   * Depends on: `mark`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-tile)
+   */
+  markTile?: InputMaybe<ImgixParamsMarkTile>;
   /**
    * Watermark Width
    *
@@ -931,24 +965,32 @@ export interface ImgixParams {
    * Padding Bottom
    *
    * Sets bottom padding of an image.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/pad-bottom)
    */
   padBottom?: InputMaybe<Scalars['IntType']>;
   /**
    * Padding Left
    *
    * Sets left padding of an image.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/pad-left)
    */
   padLeft?: InputMaybe<Scalars['IntType']>;
   /**
    * Padding Right
    *
    * Sets right padding of an image.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/pad-right)
    */
   padRight?: InputMaybe<Scalars['IntType']>;
   /**
    * Padding Top
    *
    * Sets top padding of an image.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/pad-top)
    */
   padTop?: InputMaybe<Scalars['IntType']>;
   /**
@@ -956,7 +998,7 @@ export interface ImgixParams {
    *
    * Selects a page from a PDF for display.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/pdf-page-number)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/pdf/page)
    */
   page?: InputMaybe<Scalars['IntType']>;
   /**
@@ -967,6 +1009,14 @@ export interface ImgixParams {
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/color-palette/palette)
    */
   palette?: InputMaybe<ImgixParamsPalette>;
+  /**
+   * Pdf Annotation
+   *
+   * Enables or disables PDF annotation.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/pdf/pdf-annotation)
+   */
+  pdfAnnotation?: InputMaybe<Scalars['BooleanType']>;
   /**
    * Css Prefix
    *
@@ -1047,6 +1097,8 @@ export interface ImgixParams {
    * Transparency
    *
    * Adds checkerboard behind images which support transparency.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/transparency)
    */
   transparency?: InputMaybe<ImgixParamsTransparency>;
   /**
@@ -1394,6 +1446,8 @@ export enum ImgixParamsFlip {
 }
 
 export enum ImgixParamsFm {
+  Avif = 'avif',
+  Blurhash = 'blurhash',
   Gif = 'gif',
   Jp2 = 'jp2',
   Jpg = 'jpg',
@@ -1406,6 +1460,11 @@ export enum ImgixParamsFm {
   Png32 = 'png32',
   Webm = 'webm',
   Webp = 'webp',
+}
+
+export enum ImgixParamsIptc {
+  Allow = 'allow',
+  Block = 'block',
 }
 
 export enum ImgixParamsMarkAlign {
@@ -1423,6 +1482,10 @@ export enum ImgixParamsMarkFit {
   Fill = 'fill',
   Max = 'max',
   Scale = 'scale',
+}
+
+export enum ImgixParamsMarkTile {
+  Grid = 'grid',
 }
 
 export enum ImgixParamsPalette {
