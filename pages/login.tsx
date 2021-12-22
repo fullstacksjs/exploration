@@ -60,7 +60,6 @@ const Login = () => {
           </Flex>
           <GithubButton
             onClick={() => {
-              // @ts-expect-error PENDING: NextAuth typing problem
               signIn('github', { callbackUrl: '/topics', redirect: false });
             }}
           >
