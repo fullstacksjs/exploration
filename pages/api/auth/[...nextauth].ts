@@ -9,6 +9,7 @@ export default NextAuth({
       clientSecret: getRequiredEnv('GITHUB_SECRET'),
     }),
   ],
+  secret: getRequiredEnv('NEXTAUTH_SECRET'),
   callbacks: {
     redirect({ url, baseUrl }) {
       if (url.startsWith(baseUrl)) return url;
