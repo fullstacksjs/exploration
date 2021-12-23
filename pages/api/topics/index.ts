@@ -33,12 +33,14 @@ async function datoCMSNewTopicHandler(
     const isTopicExists = await client.topic.findUnique({
       where: { id: topic.id },
     });
+    console.log({ isTopicExists });
 
     if (isTopicExists) return res.status(200).end();
 
     await client.topic.create({ data: { id: topic.id } });
     return res.status(200).end();
   } catch (e) {
+    res.status(500).json({ error: 'Internal Server Error' });
     report(e);
   }
 }
