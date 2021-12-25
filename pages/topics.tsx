@@ -70,7 +70,10 @@ export async function getStaticProps(): Promise<
 > {
   const sdk = getSdk(getClient({ preview: Env.isDev }));
   const { allTopics } = await sdk.Topics();
-  return { props: { allTopics, thisWeek: allTopics[0] }, revalidate: 3600 };
+  return {
+    props: { allTopics: allTopics.slice(1), thisWeek: allTopics[0] },
+    revalidate: 3600,
+  };
 }
 
 export default Topics;
