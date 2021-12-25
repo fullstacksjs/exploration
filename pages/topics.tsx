@@ -6,7 +6,7 @@ import { Box, Container, Flex, Heading, Text } from 'theme-ui';
 import { Divider } from '../components/Divider';
 import { LoadingOverlay } from '../components/LoadingOverlay';
 import { ThisWeekSection } from '../components/ThisWeekSection';
-import { TopicsCart } from '../components/TopicsCard';
+import { TopicCart } from '../components/TopicsCard';
 import type { TopicsQuery } from '../graphql/generated';
 import { getSdk } from '../graphql/generated';
 import { getClient } from '../lib/datocms';
@@ -51,9 +51,11 @@ const Topics: React.FC<TopicsProps> = ({ thisWeek, allTopics }) => {
       </Box>
 
       {!isNullOrEmpty(allTopics) ? (
-        <Container sx={{ display: 'flex', px: [6, 0] }}>
+        <Container
+          sx={{ display: 'flex', flexDirection: 'column', px: [6, 0], gap: 6 }}
+        >
           {allTopics.map((topic) => (
-            <TopicsCart key={topic.id} {...topic} />
+            <TopicCart key={topic.id} {...topic} />
           ))}
         </Container>
       ) : (

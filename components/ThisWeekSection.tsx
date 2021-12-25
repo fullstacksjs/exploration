@@ -2,7 +2,7 @@ import { isNull } from '@fullstacksjs/toolbox';
 import { Container, Heading } from 'theme-ui';
 import type { TopicsQuery } from '../graphql/generated';
 import Planet from './Planet';
-import { TopicsCart } from './TopicsCard';
+import { TopicCart } from './TopicsCard';
 
 type Topic = TopicsQuery['allTopics'][number];
 
@@ -30,7 +30,7 @@ export const ThisWeekSection: React.FC<ThisWeekSectionProps> = ({ topic }) =>
       />
 
       <Container sx={{ display: 'flex', px: [6, 0] }}>
-        <TopicsCart {...topic} />
+        <TopicCart {...topic} />
       </Container>
     </>
   ) : null;

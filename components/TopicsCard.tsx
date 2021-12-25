@@ -26,7 +26,7 @@ const areasTablet = `
 type TopicQuery = TopicsQuery['allTopics'][number];
 interface TopicsCartProps extends TopicQuery {}
 
-export const TopicsCart: React.FC<TopicsCartProps> = ({
+export const TopicCart: React.FC<TopicsCartProps> = ({
   id,
   title,
   description,
@@ -43,8 +43,9 @@ export const TopicsCart: React.FC<TopicsCartProps> = ({
   const hasDescOverflow = description!.length > 120;
 
   return (
-    <Card>
+    <Card sx={{ width: '100%' }}>
       <Composition
+        width="100%"
         areas={areasMobile}
         areasSm={areasTablet}
         templateCols="auto"
@@ -79,7 +80,6 @@ export const TopicsCart: React.FC<TopicsCartProps> = ({
                   position: 'relative',
                   display: 'flex',
                   flexDirection: 'column',
-                  alignItems: 'center',
                   maxHeight: [
                     showDetails ? 'max-content' : '95px',
                     'max-content',
