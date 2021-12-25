@@ -13,6 +13,6 @@ const publishedClient = new GraphQLClient(
   options,
 );
 
-export function getClient(preview?: boolean) {
+export function getClient({ preview }: { preview?: boolean }) {
   return preview ? previewClient : publishedClient;
 }

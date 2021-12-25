@@ -1,4 +1,5 @@
-import { isNullOrEmpty } from '@fullstacksjs/toolbox';
+import { Env, isNullOrEmpty } from '@fullstacksjs/toolbox';
+import type { GetStaticPropsResult } from 'next';
 import { signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { Box, Container, Flex, Heading, Text } from 'theme-ui';
@@ -62,10 +63,12 @@ const Topics: React.FC<TopicsProps> = ({ thisWeek, allTopics }) => {
   );
 };
 
-export async function getStaticProps() {
-  const sdk = getSdk(getClient(true));
+export async function getStaticProps(): Promise<
+  GetStaticPropsResult<TopicsProps>
+> {
+  const sdk = getSdk(getClient({ preview: Env.isDev }));
   const { allTopics } = await sdk.Topics();
-  return { props: { allTopics } };
+  return { props: { allTopics, thisWeek: allTopics[0] }, revalidate: 3600 };
 }
 
 export default Topics;
