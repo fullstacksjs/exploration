@@ -3,6 +3,9 @@ const themeUISvgrTemplate = require('./config/themeUiSvgrTemplate');
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
+  experimental: {
+    outputStandalone: true,
+  },
   webpack: (config) => {
     const imageLoaderRule = config.module.rules.findIndex(
       (rule) => rule.loader === 'next-image-loader',
