@@ -4,6 +4,9 @@ services:
   web:
     build:
       context: .
+      args:
+        - NEXTAUTH_URL=${NEXTAUTH_URL}
+        - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
     ports:
       - 3000:3000
     env_file:

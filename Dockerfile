@@ -10,9 +10,14 @@ RUN /install openssl
 WORKDIR /app
 
 ENV NODE_ENV production
+ARG NEXTAUTH_SECRET
+ENV NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+ARG NEXTAUTH_URL
+ENV NEXTAUTH_URL=${NEXTAUTH_URL}
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+RUN npm run gen
 RUN npm run build
 RUN cp -r /app/.next/standalone/* ./
 
