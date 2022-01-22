@@ -1,6 +1,5 @@
 import type { HeadingProps } from 'theme-ui';
-import { Box } from 'theme-ui';
-import { Heading } from 'theme-ui';
+import { Box, Heading } from 'theme-ui';
 
 interface DividerProps extends HeadingProps {
   children: string;
