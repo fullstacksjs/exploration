@@ -13,7 +13,7 @@
   "dependencies": {
     "@atomic-layout/emotion": "0.16.2",
     "@fontsource/rajdhani": "4.5.0",
-    "@fullstacksjs/toolbox": "2.9.1",
+    "@fullstacksjs/toolbox": "2.10.0",
     "@prisma/client": "3.8.1",
     "axios": "0.24.0",
     "graphql": "15",
@@ -28,7 +28,7 @@
     "theme-ui": "0.12.1"
   },
   "devDependencies": {
-    "@fullstacksjs/eslint-config": "7.1.0",
+    "@fullstacksjs/eslint-config": "7.2.1",
     "@graphql-codegen/cli": "2.3.0",
     "@graphql-codegen/introspection": "2.1.0",
     "@graphql-codegen/typescript": "2.4.1",

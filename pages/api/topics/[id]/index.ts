@@ -15,14 +15,17 @@ async function getTopic(
     const votesCount = await client.vote.count({
       where: { topicId: id },
     });
-    const isVoted = await (session
-      ? client.topic
-          .findFirst({
-            where: { Votes: { some: { userEmail: session.user?.email } } },
-            select: { id: true },
-          })
-          .then(Boolean)
-      : Promise.resolve(null));
+
+    if (!session) return res.json({ id, votesCount, isVoted: null });
+
+    const isVoted = await client.vote
+      .findUnique({
+        where: {
+          userEmail_topicId: { topicId: id, userEmail: session.user!.email! },
+        },
+        select: { id: true },
+      })
+      .then(Boolean);
 
     res.json({ id, votesCount, isVoted });
   } catch (e) {

@@ -33,7 +33,6 @@ async function datoCMSNewTopicHandler(
     const isTopicExists = await client.topic.findUnique({
       where: { id: topic.id },
     });
-    console.log({ isTopicExists });
 
     if (isTopicExists) return res.status(200).end();
 

@@ -2,6 +2,8 @@ interface ApiError {
   error: string;
 }
 
+type Topic = TopicsQuery['allTopics'][number];
+
 interface TopicVote {
   id: string;
   votesCount: number;

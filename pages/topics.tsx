@@ -1,19 +1,19 @@
 import { Env, isNullOrEmpty } from '@fullstacksjs/toolbox';
 import type { GetStaticPropsResult } from 'next';
-import { signOut, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { Box, Container, Flex, Heading, Text } from 'theme-ui';
+import { Flex, Heading } from 'theme-ui';
 import { Divider } from '../components/Divider';
 import { LoadingOverlay } from '../components/LoadingOverlay';
 import { ThisWeekSection } from '../components/ThisWeekSection';
-import { TopicCart } from '../components/TopicsCard';
-import type { TopicsQuery } from '../graphql/generated';
+import { TopicList } from '../components/TopicList';
+import { User } from '../components/User';
 import { getSdk } from '../graphql/generated';
 import { getClient } from '../lib/datocms';
 
 interface TopicsProps {
-  allTopics: TopicsQuery['allTopics'];
-  thisWeek: TopicsQuery['allTopics'][number];
+  allTopics: Topic[];
+  thisWeek: Topic;
 }
 
 const Topics: React.FC<TopicsProps> = ({ thisWeek, allTopics }) => {
@@ -32,32 +32,11 @@ const Topics: React.FC<TopicsProps> = ({ thisWeek, allTopics }) => {
       as="main"
       sx={{ paddingY: [6, 12], flexDirection: 'column', gap: [6, 8] }}
     >
-      <Flex sx={{ gap: 2, justifyContent: 'center' }}>
-        <Text sx={{ textAlign: 'center' }}>{session?.user?.email}</Text>
-        <Text
-          onClick={() => {
-            signOut();
-          }}
-        >
-          Logout
-        </Text>
-      </Flex>
+      <User email={session.user!.email!} />
       <ThisWeekSection topic={thisWeek} />
-
-      <Box sx={{ position: 'relative' }}>
-        <Box sx={{ textAlign: 'center' }}>
-          <Divider>TOP EVENTS</Divider>
-        </Box>
-      </Box>
-
+      <Divider>TOP EVENTS</Divider>
       {!isNullOrEmpty(allTopics) ? (
-        <Container
-          sx={{ display: 'flex', flexDirection: 'column', px: [6, 0], gap: 6 }}
-        >
-          {allTopics.map((topic) => (
-            <TopicCart key={topic.id} {...topic} />
-          ))}
-        </Container>
+        <TopicList topics={allTopics} />
       ) : (
         <Heading as="h2">There are no user to display</Heading>
       )}

@@ -1,13 +1,11 @@
-/* eslint-disable max-lines-per-function */
 import { Composition } from '@atomic-layout/emotion';
 import { isNull, not } from '@fullstacksjs/toolbox';
 import { useState } from 'react';
-import { Box, Button, Card, Heading, Image, Text, useThemeUI } from 'theme-ui';
+import { Box, Card, Heading, Image, Link, Text, useThemeUI } from 'theme-ui';
 import type { TopicsQuery } from '../graphql/generated';
 import { useTopic, useVoteDown, useVoteUp } from '../operations';
-import ChevronDownIcon from './Icons/ChevronDownIcon.svg';
-import ChevronUpIcon from './Icons/ChevronUpIcon.svg';
-import { PuffLoader } from './PuffLoader';
+import { Author } from './Author';
+import { VoteButton } from './VoteButton';
 
 const areasMobile = `
   icon
@@ -91,9 +89,7 @@ export const TopicCart: React.FC<TopicsCartProps> = ({
                   as="p"
                   color="text.1"
                   variant="text.body"
-                  sx={{
-                    textAlign: ['center', 'left'],
-                  }}
+                  sx={{ textAlign: ['center', 'left'] }}
                 >
                   {description}
                 </Text>
@@ -112,9 +108,13 @@ export const TopicCart: React.FC<TopicsCartProps> = ({
                 )}
               </Box>
               {hasDescOverflow ? (
-                <Text
-                  variant="small"
+                <Link
+                  tabIndex={0}
+                  variant="text.small"
                   onClick={() => setShowDetails(not)}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') setShowDetails(not);
+                  }}
                   as="span"
                   role="link"
                   sx={{
@@ -132,69 +132,25 @@ export const TopicCart: React.FC<TopicsCartProps> = ({
                   }}
                 >
                   {showDetails ? 'Hide Detail' : 'Show Detail'}
-                </Text>
+                </Link>
               ) : null}
             </Areas.Desc>
-            <Areas.Author
-              flex
-              alignItems="center"
-              flexDirection="column"
-              flexDirectionSm="row"
-            >
-              <Image
-                sx={{ width: '33px' }}
-                srcSet={lecturers[0].avatar[0].responsiveImage?.srcSet}
-                variant="images.avatar"
-                alt="Avatar"
+            <Areas.Author>
+              <Author
+                srcSet={lecturers[0].avatar[0].responsiveImage!.srcSet}
+                name={lecturers[0]!.name!}
               />
-              <Text
-                as="span"
-                variant="small"
-                sx={{
-                  marginLeft: [0, 2],
-                  marginTop: ['5px', 0],
-                  textAlign: ['center', 'left'],
-                }}
-              >
-                {lecturers[0].name}
-              </Text>
             </Areas.Author>
-
             <Areas.Button flex alignItems="center" justifyContent="center">
-              <Button
-                variant="text"
-                sx={{
-                  p: 0,
-                  display: 'flex',
-                  color: topic?.isVoted ? 'accent' : 'text',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  textTransform: 'unset',
-                  cursor: 'pointer',
-                  gap: 1,
-                }}
-                disabled={isLoading}
+              <VoteButton
+                isLoading={isLoading}
+                isVoted={topic?.isVoted}
+                votesCount={topic?.votesCount}
                 onClick={() => {
                   if (isNull(topic)) return;
                   return topic?.isVoted ? voteDown(topic.id) : voteUp(topic.id);
                 }}
-              >
-                {isLoading ? (
-                  <PuffLoader />
-                ) : (
-                  <>
-                    {!topic?.isVoted ? <ChevronUpIcon width="16px" /> : null}
-                    <Text
-                      variant="lead"
-                      as="span"
-                      sx={{ display: 'block', lineHeight: '20px' }}
-                    >
-                      {topic!.votesCount} Votes
-                    </Text>
-                    {topic?.isVoted ? <ChevronDownIcon width="16px" /> : null}
-                  </>
-                )}
-              </Button>
+              />
             </Areas.Button>
           </>
         )}
