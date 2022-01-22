@@ -5,6 +5,7 @@
     "next/core-web-vitals"
   ],
   "rules": {
-    "@typescript-eslint/naming-convention": "off"
+    "@typescript-eslint/naming-convention": "off",
+    "@typescript-eslint/no-invalid-this": "off"
   }
 }

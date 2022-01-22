@@ -32,7 +32,7 @@ const Topics: React.FC<TopicsProps> = ({ thisWeek, allTopics }) => {
       as="main"
       sx={{ paddingY: [6, 12], flexDirection: 'column', gap: [6, 8] }}
     >
-      <User email={session.user!.email!} />
+      <User email={session!.user!.email!} />
       <ThisWeekSection topic={thisWeek} />
       <Divider>TOP EVENTS</Divider>
       {!isNullOrEmpty(allTopics) ? (
