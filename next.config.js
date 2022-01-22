@@ -1,4 +1,4 @@
-const themeUISvgrTemplate = require('./config/themeUiSvgrTemplate');
+const themeUISvgrTemplate = require('./config/themeUISvgrTemplate');
 
 /** @type {import('next').NextConfig} */
 module.exports = {
@@ -22,7 +22,11 @@ module.exports = {
         titleProp: true,
         svgo: true,
         template: themeUISvgrTemplate,
+        svgoConfig: {
+          plugins: [{ name: 'removeViewBox', active: false }],
+        },
       },
+      issuer: { and: [/\.(ts|tsx|js|jsx|md|mdx)$/] },
     });
 
     return config;
