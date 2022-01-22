@@ -1565,9 +1565,7 @@ export interface LecturerModelFilter {
 }
 
 export enum LecturerModelOrderBy {
-  // @ts-ignore ISSUE: https://github.com/dotansimha/graphql-code-generator/issues/6925
   CreatedAtAsc = '_createdAt_ASC',
-  // @ts-ignore ISSUE: https://github.com/dotansimha/graphql-code-generator/issues/6925
   CreatedAtDesc = '_createdAt_DESC',
   FirstPublishedAtAsc = '_firstPublishedAt_ASC',
   FirstPublishedAtDesc = '_firstPublishedAt_DESC',
@@ -1581,21 +1579,15 @@ export enum LecturerModelOrderBy {
   StatusDesc = '_status_DESC',
   UnpublishingScheduledAtAsc = '_unpublishingScheduledAt_ASC',
   UnpublishingScheduledAtDesc = '_unpublishingScheduledAt_DESC',
-  // @ts-ignore ISSUE: https://github.com/dotansimha/graphql-code-generator/issues/6925
   UpdatedAtAsc = '_updatedAt_ASC',
-  // @ts-ignore ISSUE: https://github.com/dotansimha/graphql-code-generator/issues/6925
   UpdatedAtDesc = '_updatedAt_DESC',
-  // @ts-ignore ISSUE: https://github.com/dotansimha/graphql-code-generator/issues/6925
   CreatedAtAsc = 'createdAt_ASC',
-  // @ts-ignore ISSUE: https://github.com/dotansimha/graphql-code-generator/issues/6925
   CreatedAtDesc = 'createdAt_DESC',
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
   NameAsc = 'name_ASC',
   NameDesc = 'name_DESC',
-  // @ts-ignore ISSUE: https://github.com/dotansimha/graphql-code-generator/issues/6925
   UpdatedAtAsc = 'updatedAt_ASC',
-  // @ts-ignore ISSUE: https://github.com/dotansimha/graphql-code-generator/issues/6925
   UpdatedAtDesc = 'updatedAt_DESC',
 }
 
@@ -1920,9 +1912,7 @@ export interface TopicModelFilter {
 }
 
 export enum TopicModelOrderBy {
-  // @ts-ignore ISSUE: https://github.com/dotansimha/graphql-code-generator/issues/6925
   CreatedAtAsc = '_createdAt_ASC',
-  // @ts-ignore ISSUE: https://github.com/dotansimha/graphql-code-generator/issues/6925
   CreatedAtDesc = '_createdAt_DESC',
   FirstPublishedAtAsc = '_firstPublishedAt_ASC',
   FirstPublishedAtDesc = '_firstPublishedAt_DESC',
@@ -1936,21 +1926,15 @@ export enum TopicModelOrderBy {
   StatusDesc = '_status_DESC',
   UnpublishingScheduledAtAsc = '_unpublishingScheduledAt_ASC',
   UnpublishingScheduledAtDesc = '_unpublishingScheduledAt_DESC',
-  // @ts-ignore ISSUE: https://github.com/dotansimha/graphql-code-generator/issues/6925
   UpdatedAtAsc = '_updatedAt_ASC',
-  // @ts-ignore ISSUE: https://github.com/dotansimha/graphql-code-generator/issues/6925
   UpdatedAtDesc = '_updatedAt_DESC',
-  // @ts-ignore ISSUE: https://github.com/dotansimha/graphql-code-generator/issues/6925
   CreatedAtAsc = 'createdAt_ASC',
-  // @ts-ignore ISSUE: https://github.com/dotansimha/graphql-code-generator/issues/6925
   CreatedAtDesc = 'createdAt_DESC',
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
   TitleAsc = 'title_ASC',
   TitleDesc = 'title_DESC',
-  // @ts-ignore ISSUE: https://github.com/dotansimha/graphql-code-generator/issues/6925
   UpdatedAtAsc = 'updatedAt_ASC',
-  // @ts-ignore ISSUE: https://github.com/dotansimha/graphql-code-generator/issues/6925
   UpdatedAtDesc = 'updatedAt_DESC',
 }
 
