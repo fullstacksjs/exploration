@@ -20,6 +20,12 @@ const theme: Theme = {
       2: '#383E4D',
       3: '#404859',
     },
+    shades: {
+      0: '#2B303B',
+    },
+    tints: {
+      0: 'hsl(219 40% 88% / .1)',
+    },
   },
 
   space: range(41).map((i) => i * 5),

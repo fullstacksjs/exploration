@@ -11,7 +11,9 @@ const themeUISvgTemplate = (
   const getAttributeValue = getJsxAttributeValue(jsx);
   const viewBox = getAttributeValue('viewBox');
   const viewBoxProp = viewBox ? `viewBox: '${viewBox}',` : '';
-  const props = `{ ${viewBoxProp} ...props }`;
+  const fill = getAttributeValue('fill');
+  const fillProp = fill ? `fill: '${fill}',` : '';
+  const props = `{ ${viewBoxProp} ${fillProp} ...props }`;
 
   return tpl`
   import { jsx } from 'theme-ui';
