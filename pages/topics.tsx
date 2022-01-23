@@ -30,7 +30,7 @@ const Topics: React.FC<TopicsProps> = ({ thisWeek, allTopics }) => {
 
   return (
     <Flex as="main" sx={{ paddingY: 6, flexDirection: 'column', gap: [6, 8] }}>
-      <Box sx={{ alignSelf: 'flex-end', pr: 5 }}>
+      <Box sx={{ alignSelf: ['center', 'flex-end'], pr: [0, 5] }}>
         <User image={session!.user!.image!} email={session!.user!.email!} />
       </Box>
       <Planet
