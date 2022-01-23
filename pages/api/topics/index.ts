@@ -1,5 +1,5 @@
 import { isNullOrEmpty } from '@fullstacksjs/toolbox';
-import { PrismaClient } from '@prisma/client';
+import prisma from '../../../lib/prisma';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { apiHandler } from '../../../lib/apiHandler';
 import { env } from '../../../lib/env';
@@ -28,15 +28,14 @@ async function datoCMSNewTopicHandler(
     if (!isAuthorized) return res.status(401).end();
 
     const body: PublishEventBody = req.body;
-    const client = new PrismaClient();
     const topic = body.entity;
-    const isTopicExists = await client.topic.findUnique({
+    const isTopicExists = await prisma.topic.findUnique({
       where: { id: topic.id },
     });
 
     if (isTopicExists) return res.status(200).end();
 
-    await client.topic.create({ data: { id: topic.id } });
+    await prisma.topic.create({ data: { id: topic.id } });
     return res.status(200).end();
   } catch (e) {
     res.status(500).json({ error: 'Internal Server Error' });

@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { PrismaClient } from '@prisma/client';
+import prisma from '../../../../lib/prisma';
 import { report } from '../../../../lib/error';
 import { getSession } from 'next-auth/react';
 import { apiHandler } from '../../../../lib/apiHandler';
@@ -11,11 +11,10 @@ async function voteUp(
   const session = await getSession({ req });
   if (!session?.user?.email) return res.status(401).end();
 
-  const client = new PrismaClient();
   const { id } = req.query as { id: string };
 
   try {
-    const isVoted = await client.vote.findUnique({
+    const isVoted = await prisma.vote.findUnique({
       where: {
         userEmail_topicId: { topicId: id, userEmail: session.user.email },
       },
@@ -23,7 +22,7 @@ async function voteUp(
 
     if (isVoted) return res.status(400).json({ error: 'Already voted' });
 
-    const topic = await client.topic.update({
+    const topic = await prisma.topic.update({
       where: { id },
       data: { Votes: { create: { userEmail: session.user.email } } },
       select: { id: true, _count: { select: { Votes: true } } },

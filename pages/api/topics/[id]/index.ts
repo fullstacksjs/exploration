@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { PrismaClient } from '@prisma/client';
+import prisma from '../../../../lib/prisma';
 import { report } from '../../../../lib/error';
 import { getSession } from 'next-auth/react';
 import { apiHandler } from '../../../../lib/apiHandler';
@@ -8,17 +8,16 @@ async function getTopic(
   req: NextApiRequest,
   res: NextApiResponse<ApiError | TopicVote>,
 ) {
-  const client = new PrismaClient();
   const session = await getSession({ req });
   const { id } = req.query as { id: string };
   try {
-    const votesCount = await client.vote.count({
+    const votesCount = await prisma.vote.count({
       where: { topicId: id },
     });
 
     if (!session) return res.json({ id, votesCount, isVoted: null });
 
-    const isVoted = await client.vote
+    const isVoted = await prisma.vote
       .findUnique({
         where: {
           userEmail_topicId: { topicId: id, userEmail: session.user!.email! },
