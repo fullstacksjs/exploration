@@ -1,5 +1,5 @@
 import type { DocumentContext } from 'next/document';
-import BaseDocument, { Html, Head, Main, NextScript } from 'next/document';
+import BaseDocument, { Head, Html, Main, NextScript } from 'next/document';
 import { InitializeColorMode } from 'theme-ui';
 
 export class Document extends BaseDocument {

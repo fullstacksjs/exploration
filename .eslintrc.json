@@ -1,9 +1,5 @@
 {
-  "extends": [
-    "@fullstacksjs/eslint-config/nextjs",
-    "@fullstacksjs/eslint-config/typescript",
-    "next/core-web-vitals"
-  ],
+  "extends": ["@fullstacksjs", "next/core-web-vitals"],
   "rules": {
     "@typescript-eslint/naming-convention": "off",
     "@typescript-eslint/no-invalid-this": "off"

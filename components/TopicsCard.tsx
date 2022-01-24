@@ -2,6 +2,7 @@ import { Composition } from '@atomic-layout/emotion';
 import { isNull, not } from '@fullstacksjs/toolbox';
 import { useState } from 'react';
 import { Box, Card, Heading, Image, Link, Text, useThemeUI } from 'theme-ui';
+
 import type { TopicsQuery } from '../graphql/generated';
 import { useTopic, useVoteDown, useVoteUp } from '../operations';
 import { Author } from './Author';

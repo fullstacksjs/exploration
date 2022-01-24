@@ -2,6 +2,7 @@ import { not } from '@fullstacksjs/toolbox';
 import { signOut } from 'next-auth/react';
 import { useState } from 'react';
 import { Flex, Image, Text } from 'theme-ui';
+
 import LogoutIcon from './Icons/LogoutIcon.svg';
 
 interface UserProps {

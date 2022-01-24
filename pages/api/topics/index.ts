@@ -1,9 +1,10 @@
 import { isNullOrEmpty } from '@fullstacksjs/toolbox';
-import prisma from '../../../lib/prisma';
 import type { NextApiRequest, NextApiResponse } from 'next';
+
 import { apiHandler } from '../../../lib/apiHandler';
 import { env } from '../../../lib/env';
 import { report } from '../../../lib/error';
+import prisma from '../../../lib/prisma';
 
 function isBasicAuthorized(authorization: string | undefined) {
   if (authorization == null) return false;

@@ -1,12 +1,13 @@
-import Meta from '../components/Meta';
-import theme from '../lib/theme';
-import { ThemeProvider } from 'theme-ui';
-import GlobalStyles from '../components/GlobalStyles';
-import React from 'react';
-import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
+import { SessionProvider } from 'next-auth/react';
+import React from 'react';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { ThemeProvider } from 'theme-ui';
+
+import GlobalStyles from '../components/GlobalStyles';
+import Meta from '../components/Meta';
+import theme from '../lib/theme';
 
 const App: React.FC<AppProps> = ({
   Component,

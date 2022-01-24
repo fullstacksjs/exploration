@@ -1,7 +1,8 @@
 import { Button, Text } from 'theme-ui';
-import { PuffLoader } from './PuffLoader';
+
 import ChevronDownIcon from './Icons/ChevronDownIcon.svg';
 import ChevronUpIcon from './Icons/ChevronUpIcon.svg';
+import { PuffLoader } from './PuffLoader';
 
 interface VoteProps {
   isLoading: boolean;

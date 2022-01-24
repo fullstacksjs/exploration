@@ -1,7 +1,7 @@
 import { Button, Card, Flex, Heading, Text } from 'theme-ui';
 
-import ReactComponent from '../components/Icons/Planet.svg';
 import Hero from '../components/Hero';
+import ReactComponent from '../components/Icons/Planet.svg';
 
 const WelcomePage = () => {
   return (

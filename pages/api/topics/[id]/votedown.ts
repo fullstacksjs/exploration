@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import prisma from '../../../../lib/prisma';
-import { report } from '../../../../lib/error';
 import { getSession } from 'next-auth/react';
+
 import { apiHandler } from '../../../../lib/apiHandler';
+import { report } from '../../../../lib/error';
+import prisma from '../../../../lib/prisma';
 
 async function voteDown(
   req: NextApiRequest,

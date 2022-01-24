@@ -1,16 +1,17 @@
 import { Env, isNull, isNullOrEmpty } from '@fullstacksjs/toolbox';
 import type { GetStaticPropsResult } from 'next';
-import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
 import { Box, Container, Flex, Heading } from 'theme-ui';
+
 import { Divider } from '../components/Divider';
 import { LoadingOverlay } from '../components/LoadingOverlay';
+import Planet from '../components/Planet';
 import { TopicList } from '../components/TopicList';
 import { TopicCart } from '../components/TopicsCard';
 import { User } from '../components/User';
 import { getSdk } from '../graphql/generated';
 import { getClient } from '../lib/datocms';
-import Planet from '../components/Planet';
 
 interface TopicsProps {
   allTopics: Topic[];

@@ -1,5 +1,6 @@
 import { signIn } from 'next-auth/react';
 import { Card, Flex, Heading, Text } from 'theme-ui';
+
 import GithubButton from '../components/GithubButton';
 import Hero from '../components/Hero';
 import PlanetSvg from '../components/Icons/Planet.svg';
