@@ -7,6 +7,8 @@ env:
   OUT_DIR: .next/
   AWS_REGION: eu-central-1
   DEPLOYMENT_BUCKET: exploration-webappdeploymentbucket-127zs8usx561t
+  NEXT_DATOCMS_API_TOKEN: ${{ secrets.NEXT_DATOCMS_API_TOKEN }}
+  SCHEMA_URL: ${{ secrets.SCHEMA_URL }}
 
 jobs:
   build:
