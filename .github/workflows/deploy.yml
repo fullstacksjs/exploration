@@ -24,7 +24,7 @@ jobs:
       - uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: ${{ secrets.IAMROLE_GITHUB }}
-          role-session-name: CodeDeployRoleforGitHub
+          role-session-name: GitHub-Action-Role
           aws-region: ${{ env.AWS_REGION }}
 
       - uses: actions/setup-node@v3
@@ -35,7 +35,7 @@ jobs:
       - run: npm run build
 
       - name: Upload Artifact to s3
-        run: aws s3 cp ${{ env.OUT_DIR }} s3://${{ env.DEPLOYMENT_BUCKET }}/
+        run: aws s3 sync ${{ env.OUT_DIR }} s3://${{ env.DEPLOYMENT_BUCKET }}/
 
   deploy:
     needs: build
