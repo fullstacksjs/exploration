@@ -4,7 +4,7 @@ on:
   workflow_dispatch: {}
 
 env:
-  OUT_DIR: .next/
+  OUT_DIR: .next
   AWS_REGION: eu-central-1
   DEPLOYMENT_BUCKET: exploration-webappdeploymentbucket-127zs8usx561t
   NEXT_DATOCMS_API_TOKEN: ${{ secrets.NEXT_DATOCMS_API_TOKEN }}
@@ -35,7 +35,7 @@ jobs:
       - run: npm run build
 
       - name: Upload Artifact to s3
-        run: aws s3 sync ${{ env.OUT_DIR }} s3://${{ env.DEPLOYMENT_BUCKET }}/
+        run: aws s3 cp ${{ env.OUT_DIR }} s3://${{ env.DEPLOYMENT_BUCKET }}/
 
   deploy:
     needs: build
