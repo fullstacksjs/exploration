@@ -1,0 +1,26 @@
+version: 0.0
+os: linux
+files:
+  - source: /scripts/aws
+    destination: /usr/local/codedeployresources
+hooks:
+  ApplicationStop:
+    - location: scripts/aws/application-stop.sh
+      timeout: 300
+      runas: root
+  BeforeInstall:
+    - location: scripts/aws/before-install.sh
+      timeout: 300
+      runas: root
+  AfterInstall:
+    - location: scripts/aws/after-install.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: scripts/aws/application-start.sh
+      timeout: 300
+      runas: root
+  ValidateService:
+    - location: scripts/aws/validate-service.sh
+      timeout: 300
+      runas: root
