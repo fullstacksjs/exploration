@@ -24,7 +24,7 @@ jobs:
       - uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: ${{ secrets.IAMROLE_GITHUB }}
-          role-session-name: GitHub-Action-Role
+          role-session-name: CodeDeployRoleforGitHub
           aws-region: ${{ env.AWS_REGION }}
 
       - uses: actions/setup-node@v3
