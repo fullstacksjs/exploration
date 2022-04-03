@@ -1,4 +1,5 @@
 import { useQuery } from 'react-query';
+
 import { apiClient } from '../lib/apiClient';
 
 const getTopic = (id: string) => apiClient.get<TopicVote>(`/topics/${id}`);

@@ -13,7 +13,7 @@ const App: React.FC<AppProps> = ({
   Component,
   pageProps: { session, dehydratedState, ...pageProps },
 }) => {
-  const [queryClient] = React.useState(() => new QueryClient());
+  const queryClient = React.useMemo(() => new QueryClient(), []);
 
   return (
     <QueryClientProvider client={queryClient}>

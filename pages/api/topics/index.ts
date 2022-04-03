@@ -1,5 +1,5 @@
 import { isNullOrEmpty } from '@fullstacksjs/toolbox';
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiHandler } from 'next';
 
 import { apiHandler } from '../../../lib/apiHandler';
 import { env } from '../../../lib/env';
@@ -19,14 +19,17 @@ function isBasicAuthorized(authorization: string | undefined) {
   return username === env.datoUsername && password === env.datoPassword;
 }
 
-async function datoCMSNewTopicHandler(
-  req: NextApiRequest,
-  res: NextApiResponse<ApiError | TopicVote>,
-) {
+const datoCMSNewTopicHandler: NextApiHandler<ApiError | TopicVote> = async (
+  req,
+  res,
+) => {
   const isAuthorized = isBasicAuthorized(req.headers.authorization);
 
   try {
-    if (!isAuthorized) return res.status(401).end();
+    if (!isAuthorized) {
+      res.status(401).end();
+      return;
+    }
 
     const body: PublishEventBody = req.body;
     const topic = body.entity;
@@ -34,15 +37,18 @@ async function datoCMSNewTopicHandler(
       where: { id: topic.id },
     });
 
-    if (isTopicExists) return res.status(200).end();
+    if (isTopicExists) {
+      res.status(200).end();
+      return;
+    }
 
     await prisma.topic.create({ data: { id: topic.id } });
-    return res.status(200).end();
+    res.status(200).end();
   } catch (e) {
     res.status(500).json({ error: 'Internal Server Error' });
     report(e);
   }
-}
+};
 
 const handler = apiHandler({
   post: datoCMSNewTopicHandler,

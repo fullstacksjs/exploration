@@ -16,7 +16,10 @@ async function getTopic(
       where: { topicId: id },
     });
 
-    if (!session) return res.json({ id, votesCount, isVoted: null });
+    if (!session) {
+      res.json({ id, votesCount, isVoted: null });
+      return;
+    }
 
     const isVoted = await prisma.vote
       .findUnique({

@@ -10,7 +10,10 @@ async function voteUp(
   res: NextApiResponse<ApiError | TopicVote>,
 ) {
   const session = await getSession({ req });
-  if (!session?.user?.email) return res.status(401).end();
+  if (!session?.user?.email) {
+    res.status(401).end();
+    return;
+  }
 
   const { id } = req.query as { id: string };
 
@@ -21,7 +24,10 @@ async function voteUp(
       },
     });
 
-    if (isVoted) return res.status(400).json({ error: 'Already voted' });
+    if (isVoted) {
+      res.status(400).json({ error: 'Already voted' });
+      return;
+    }
 
     const topic = await prisma.topic.update({
       where: { id },

@@ -1,16 +1,17 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiHandler } from 'next';
 import { getSession } from 'next-auth/react';
 
 import { apiHandler } from '../../../../lib/apiHandler';
 import { report } from '../../../../lib/error';
 import prisma from '../../../../lib/prisma';
 
-async function voteDown(
-  req: NextApiRequest,
-  res: NextApiResponse<ApiError | TopicVote>,
-) {
+const voteDown: NextApiHandler<ApiError | TopicVote> = async (req, res) => {
   const session = await getSession({ req });
-  if (!session?.user?.email) return res.status(401).end();
+  if (!session?.user?.email) {
+    res.status(401).end();
+    return;
+  }
+
   const { id } = req.query as { id: string };
 
   console.log({
@@ -25,8 +26,10 @@ async function voteDown(
       },
     });
 
-    if (!isVoted)
-      return res.status(400).json({ error: "You dont't have a vote" });
+    if (!isVoted) {
+      res.status(400).json({ error: "You dont't have a vote" });
+      return;
+    }
 
     const topic = await prisma.vote.delete({
       where: {
@@ -43,7 +46,7 @@ async function voteDown(
     res.status(500).json({ error: 'Internal Server Error' });
     report(e);
   }
-}
+};
 
 const handler = apiHandler({
   put: voteDown,

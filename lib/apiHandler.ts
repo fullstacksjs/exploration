@@ -6,11 +6,16 @@ type Handler<T> = Partial<Record<HttpMethod, NextApiHandler<T>>>;
 
 export const apiHandler =
   <T>(handlers: Handler<T>) =>
-  (req: NextApiRequest, res: NextApiResponse<T>) => {
+  (
+    req: NextApiRequest,
+    res: NextApiResponse<T>,
+  ): Promise<NextApiResponse<ApiError | TopicVote> | void> | void => {
     const method = req.method!.toLowerCase() as HttpMethod;
     const handler = handlers[method];
+    if (!handler) {
+      res.status(405).end(`Method ${req.method} Not Allowed`);
+      return;
+    }
 
-    return handler
-      ? handler(req, res)
-      : res.status(405).end(`Method ${req.method} Not Allowed`);
+    return handler(req, res);
   };

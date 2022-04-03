@@ -1,7 +1,8 @@
 {
-  "extends": ["@fullstacksjs", "next/core-web-vitals"],
+  "extends": ["@fullstacksjs"],
   "rules": {
     "@typescript-eslint/naming-convention": "off",
-    "@typescript-eslint/no-invalid-this": "off"
+    "@typescript-eslint/no-invalid-this": "off",
+    "@typescript-eslint/no-invalid-void-type": "off"
   }
 }
