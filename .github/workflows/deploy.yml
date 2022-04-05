@@ -56,6 +56,6 @@ jobs:
           COMMIT_HASH=`git rev-parse HEAD`
           aws deploy create-deployment \
             --application-name CodeDeployAppNameWithASG \
-            --deployment-group-name CodeDeployGroupName \
+            --deployment-group-name ExplorationDeploymentGroup \
             --github-location repository=$GITHUB_REPOSITORY,commitId=$COMMIT_HASH \
             --ignore-application-stop-failures
